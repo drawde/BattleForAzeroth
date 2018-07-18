@@ -1,0 +1,9 @@
+d:\Mygit\BattleForAzeroth\BattleForAzeroth.Game\bin\Debug\netstandard2.0\BattleForAzeroth.Game.deps.json
+d:\Mygit\BattleForAzeroth\BattleForAzeroth.Game\bin\Debug\netstandard2.0\BattleForAzeroth.Game.dll
+d:\Mygit\BattleForAzeroth\BattleForAzeroth.Game\bin\Debug\netstandard2.0\BattleForAzeroth.Game.pdb
+d:\Mygit\BattleForAzeroth\BattleForAzeroth.Game\obj\Debug\netstandard2.0\BattleForAzeroth.Game.csproj.CoreCompileInputs.cache
+d:\Mygit\BattleForAzeroth\BattleForAzeroth.Game\obj\Debug\netstandard2.0\BattleForAzeroth.Game.AssemblyInfoInputs.cache
+d:\Mygit\BattleForAzeroth\BattleForAzeroth.Game\obj\Debug\netstandard2.0\BattleForAzeroth.Game.AssemblyInfo.cs
+d:\Mygit\BattleForAzeroth\BattleForAzeroth.Game\obj\Debug\netstandard2.0\BattleForAzeroth.Game.dll
+d:\Mygit\BattleForAzeroth\BattleForAzeroth.Game\obj\Debug\netstandard2.0\BattleForAzeroth.Game.pdb
+D:\Mygit\BattleForAzeroth\BattleForAzeroth.Game\obj\Debug\netstandard2.0\BattleForAzeroth.Game.csprojResolveAssemblyReference.cache

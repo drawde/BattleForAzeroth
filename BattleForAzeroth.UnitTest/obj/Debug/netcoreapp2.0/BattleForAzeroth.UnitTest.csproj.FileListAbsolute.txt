@@ -1,0 +1,14 @@
+d:\Mygit\BattleForAzeroth\BattleForAzeroth.UnitTest\bin\Debug\netcoreapp2.0\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+d:\Mygit\BattleForAzeroth\BattleForAzeroth.UnitTest\bin\Debug\netcoreapp2.0\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+d:\Mygit\BattleForAzeroth\BattleForAzeroth.UnitTest\bin\Debug\netcoreapp2.0\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+d:\Mygit\BattleForAzeroth\BattleForAzeroth.UnitTest\bin\Debug\netcoreapp2.0\BattleForAzeroth.UnitTest.deps.json
+d:\Mygit\BattleForAzeroth\BattleForAzeroth.UnitTest\bin\Debug\netcoreapp2.0\BattleForAzeroth.UnitTest.runtimeconfig.json
+d:\Mygit\BattleForAzeroth\BattleForAzeroth.UnitTest\bin\Debug\netcoreapp2.0\BattleForAzeroth.UnitTest.runtimeconfig.dev.json
+d:\Mygit\BattleForAzeroth\BattleForAzeroth.UnitTest\bin\Debug\netcoreapp2.0\BattleForAzeroth.UnitTest.dll
+d:\Mygit\BattleForAzeroth\BattleForAzeroth.UnitTest\bin\Debug\netcoreapp2.0\BattleForAzeroth.UnitTest.pdb
+d:\Mygit\BattleForAzeroth\BattleForAzeroth.UnitTest\obj\Debug\netcoreapp2.0\BattleForAzeroth.UnitTest.csproj.CoreCompileInputs.cache
+d:\Mygit\BattleForAzeroth\BattleForAzeroth.UnitTest\obj\Debug\netcoreapp2.0\BattleForAzeroth.UnitTest.AssemblyInfoInputs.cache
+d:\Mygit\BattleForAzeroth\BattleForAzeroth.UnitTest\obj\Debug\netcoreapp2.0\BattleForAzeroth.UnitTest.AssemblyInfo.cs
+d:\Mygit\BattleForAzeroth\BattleForAzeroth.UnitTest\obj\Debug\netcoreapp2.0\BattleForAzeroth.UnitTest.dll
+d:\Mygit\BattleForAzeroth\BattleForAzeroth.UnitTest\obj\Debug\netcoreapp2.0\BattleForAzeroth.UnitTest.pdb
+D:\Mygit\BattleForAzeroth\BattleForAzeroth.UnitTest\obj\Debug\netcoreapp2.0\BattleForAzeroth.UnitTest.csprojResolveAssemblyReference.cache

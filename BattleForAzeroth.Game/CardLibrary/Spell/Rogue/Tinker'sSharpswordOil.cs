@@ -17,6 +17,7 @@ namespace BattleForAzeroth.Game.CardLibrary.Spell.Rogue
 {
     public class Tinker_sSharpswordOil : BaseSpell
     {
+        public override string CardCode => "071";
         public override Rarity Rare => Rarity.普通;
 
         public override string Name => "修补匠的磨刀油";

@@ -11,6 +11,7 @@ namespace BattleForAzeroth.Game.CardLibrary.Servant.Neutral.GVG
 {
     public class AntiqueHealbot : BaseServant
     {
+        public override string CardCode => "055";
         public override int Damage { get; set; }  = 3;
         public override int Life { get; set; }  = 3;
         public override int Cost { get; set; }  = 5;

@@ -9,6 +9,7 @@ namespace BattleForAzeroth.Game.CardLibrary.Servant.Paladin
 {
     public class AnduinLothar : BaseServant
     {
+        public override string CardCode => "080";
         public override int Damage { get; set; }  = 5;
         public override int Life { get; set; }  = 3;
         public override int Cost { get; set; }  = 10;

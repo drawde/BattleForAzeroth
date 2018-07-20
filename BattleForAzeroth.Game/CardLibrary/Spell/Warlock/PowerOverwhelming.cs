@@ -20,6 +20,7 @@ namespace BattleForAzeroth.Game.CardLibrary.Spell.Warlock
 {
     public class PowerOverwhelming : BaseSpell
     {
+        public override string CardCode => "048";
         public override Rarity Rare => Rarity.普通;
 
         public override string Name => "力量的代价";

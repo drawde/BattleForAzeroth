@@ -15,6 +15,7 @@ namespace BattleForAzeroth.Game.CardLibrary.Spell.Paladin
 {
     public class Equality : BaseSpell
     {
+        public override string CardCode => "087";
         public override Rarity Rare => Rarity.史诗;
 
         public override string Name => "生而平等";

@@ -12,6 +12,7 @@ namespace BattleForAzeroth.Game.CardLibrary.Spell.Rogue
 {
     public class Eviscerate : BaseSpell
     {
+        public override string CardCode => "063";
         public override Rarity Rare => Rarity.普通;
 
         public override string Name => "刺骨";

@@ -9,6 +9,7 @@ namespace BattleForAzeroth.Game.CardLibrary.Equip.Warrior
 {
     public class FieryWarAxe : BaseEquip
     {
+        public override string CardCode => "044";
         public override string Name => "炽炎战斧";
         public override string BackgroudImage => "W14_a200_D.png";
 

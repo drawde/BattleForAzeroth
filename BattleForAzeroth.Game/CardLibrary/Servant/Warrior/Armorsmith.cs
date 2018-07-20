@@ -10,6 +10,7 @@ namespace BattleForAzeroth.Game.CardLibrary.Servant.Warrior
 {
     public class Armorsmith : BaseServant
     {
+        public override string CardCode => "033";
         public override int Damage { get; set; }  = 1;
         public override int Life { get; set; }  = 4;
         public override int Cost { get; set; }  = 2;

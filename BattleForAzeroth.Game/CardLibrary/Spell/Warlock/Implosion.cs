@@ -16,6 +16,7 @@ namespace BattleForAzeroth.Game.CardLibrary.Spell.Warlock
 {
     public class Implosion : BaseSpell
     {
+        public override string CardCode => "051";
         public override Rarity Rare => Rarity.普通;
 
         public override string Name => "小鬼爆破";

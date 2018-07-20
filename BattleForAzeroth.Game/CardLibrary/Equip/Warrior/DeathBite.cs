@@ -10,6 +10,7 @@ namespace BattleForAzeroth.Game.CardLibrary.Equip.Warrior
 {
     public class DeathBite : BaseEquip
     {
+        public override string CardCode => "028";
         public override string Name => "死亡之咬";
         public override string BackgroudImage => "WOW_EQU_001_D_1.png";
 

@@ -12,6 +12,7 @@ namespace BattleForAzeroth.Game.CardLibrary.Servant.Neutral.NAXX
 {
     public class Loatheb : BaseServant
     {
+        public override string CardCode => "054";
         public override int Damage { get; set; }  = 5;
         public override int Life { get; set; }  = 5;
         public override int Cost { get; set; }  = 5;

@@ -2,6 +2,7 @@
 {
     public class Assassin_sBlade : BaseEquip
     {
+        public override string CardCode => "069";
         public override string Name => "刺客之刃";
         public override string BackgroudImage => "Classical/Assassin_sBlade.jpg";
 

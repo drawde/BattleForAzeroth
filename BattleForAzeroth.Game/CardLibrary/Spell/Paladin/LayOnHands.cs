@@ -14,6 +14,7 @@ namespace BattleForAzeroth.Game.CardLibrary.Spell.Paladin
 {
     public class LayOnHands : BaseSpell
     {
+        public override string CardCode => "088";
         public override Rarity Rare => Rarity.史诗;
 
         public override string Name => "圣疗";

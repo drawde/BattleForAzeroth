@@ -15,6 +15,7 @@ namespace BattleForAzeroth.Game.CardLibrary.Spell.Rogue
 {
     public class DeadlyPoison : BaseSpell
     {
+        public override string CardCode => "070";
         public override Rarity Rare => Rarity.普通;
 
         public override string Name => "致命药膏";

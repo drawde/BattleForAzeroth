@@ -12,6 +12,7 @@ namespace BattleForAzeroth.Game.CardLibrary.Servant.Neutral.BlackrockMountain
 {
     public class EmperorThaurissan : BaseServant
     {
+        public override string CardCode => "027";
         public override int Damage { get; set; }  = 5;
         public override int Life { get; set; }  = 5;
         public override int Cost { get; set; }  = 6;

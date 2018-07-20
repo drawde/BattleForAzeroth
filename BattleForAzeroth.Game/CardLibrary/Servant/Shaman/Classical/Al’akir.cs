@@ -9,6 +9,7 @@ namespace BattleForAzeroth.Game.CardLibrary.Servant.Shaman.Classical
 {
     public class Al_akir : BaseServant
     {
+        public override string CardCode => "003";
         public override int Damage { get; set; }  = 3;
         public override int Life { get; set; }  = 4;
         public override int Cost { get; set; }  = 8;

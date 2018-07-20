@@ -12,6 +12,7 @@ namespace BattleForAzeroth.Game.CardLibrary.Servant.Neutral.NAXX
 {
     public class SludgeBelcher : BaseServant
     {
+        public override string CardCode => "090";
         public override int Damage { get; set; }  = 3;
         public override int Life { get; set; }  = 5;
         public override int Cost { get; set; }  = 5;

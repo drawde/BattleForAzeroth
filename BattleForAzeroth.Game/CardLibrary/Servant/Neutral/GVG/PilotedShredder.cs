@@ -12,6 +12,7 @@ namespace BattleForAzeroth.Game.CardLibrary.Servant.Neutral.GVG
 {
     public class PilotedShredder : BaseServant
     {
+        public override string CardCode => "052";
         public override int Damage { get; set; }  = 4;
         public override int Life { get; set; }  = 3;
         public override int Cost { get; set; }  = 4;

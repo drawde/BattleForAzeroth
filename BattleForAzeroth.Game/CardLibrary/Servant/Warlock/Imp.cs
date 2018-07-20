@@ -8,6 +8,7 @@ namespace BattleForAzeroth.Game.CardLibrary.Servant.Warlock
 {
     public class Imp : BaseServant
     {
+        public override string CardCode => "050";
         public override int Damage { get; set; }  = 1;
         public override int Life { get; set; }  = 1;
         public override int Cost { get; set; }  = 1;

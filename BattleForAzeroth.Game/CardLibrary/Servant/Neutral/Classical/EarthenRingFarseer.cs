@@ -11,6 +11,7 @@ namespace BattleForAzeroth.Game.CardLibrary.Servant.Neutral.Classical
 {
     public class EarthenRingFarseer : BaseServant
     {
+        public override string CardCode => "056";
         public override int Damage { get; set; }  = 3;
         public override int Life { get; set; }  = 3;
         public override int Cost { get; set; }  = 3;

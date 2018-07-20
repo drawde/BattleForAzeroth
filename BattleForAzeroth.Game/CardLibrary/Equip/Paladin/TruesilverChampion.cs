@@ -10,6 +10,7 @@ namespace BattleForAzeroth.Game.CardLibrary.Equip.Paladin
 {
     public class TruesilverChampion : BaseEquip
     {
+        public override string CardCode => "089";
         public override string Name => "真银圣剑";
 
         public override string BackgroudImage => "Paladin/TruesilverChampion.jpg";

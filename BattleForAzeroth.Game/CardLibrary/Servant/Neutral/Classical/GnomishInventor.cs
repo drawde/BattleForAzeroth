@@ -15,6 +15,7 @@ namespace BattleForAzeroth.Game.CardLibrary.Servant.Neutral.Classical
 {
     public class GnomishInventor : BaseServant
     {
+        public override string CardCode => "031";
         public override int Damage { get; set; }  = 2;
         public override int Life { get; set; }  = 4;
         public override int Cost { get; set; }  = 4;

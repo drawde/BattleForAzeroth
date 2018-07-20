@@ -15,6 +15,7 @@ namespace BattleForAzeroth.Game.CardLibrary.Spell.Rogue
 {
     public class Sap : BaseSpell
     {
+        public override string CardCode => "061";
         public override Rarity Rare => Rarity.普通;
 
         public override string Name => "闷棍";

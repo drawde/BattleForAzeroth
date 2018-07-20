@@ -12,3 +12,6 @@ d:\Mygit\BattleForAzeroth\BattleForAzeroth.UnitTest\obj\Debug\netcoreapp2.0\Batt
 d:\Mygit\BattleForAzeroth\BattleForAzeroth.UnitTest\obj\Debug\netcoreapp2.0\BattleForAzeroth.UnitTest.dll
 d:\Mygit\BattleForAzeroth\BattleForAzeroth.UnitTest\obj\Debug\netcoreapp2.0\BattleForAzeroth.UnitTest.pdb
 D:\Mygit\BattleForAzeroth\BattleForAzeroth.UnitTest\obj\Debug\netcoreapp2.0\BattleForAzeroth.UnitTest.csprojResolveAssemblyReference.cache
+D:\Mygit\BattleForAzeroth\BattleForAzeroth.UnitTest\bin\Debug\netcoreapp2.0\BattleForAzeroth.Game.dll
+D:\Mygit\BattleForAzeroth\BattleForAzeroth.UnitTest\bin\Debug\netcoreapp2.0\BattleForAzeroth.Game.pdb
+D:\Mygit\BattleForAzeroth\BattleForAzeroth.UnitTest\obj\Debug\netcoreapp2.0\BattleForAzeroth.UnitTest.csproj.CopyComplete

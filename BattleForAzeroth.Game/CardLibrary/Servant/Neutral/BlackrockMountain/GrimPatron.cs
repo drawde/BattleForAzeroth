@@ -13,6 +13,7 @@ namespace BattleForAzeroth.Game.CardLibrary.Servant.Neutral.BlackrockMountain
 {
     public class GrimPatron : BaseServant
     {
+        public override string CardCode => "023";
         public override int Damage { get; set; }  = 3;
         public override int Life { get; set; }  = 3;
         public override int Cost { get; set; }  = 5;

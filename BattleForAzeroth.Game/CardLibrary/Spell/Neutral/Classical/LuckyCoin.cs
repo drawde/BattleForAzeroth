@@ -10,6 +10,7 @@ namespace BattleForAzeroth.Game.CardLibrary.Spell.Neutral.Classical
 {
     public class LuckyCoin: BaseSpell
     {
+        public override string CardCode => "007";
         public override Rarity Rare => Rarity.普通;
 
         public override string Name => "幸运币";

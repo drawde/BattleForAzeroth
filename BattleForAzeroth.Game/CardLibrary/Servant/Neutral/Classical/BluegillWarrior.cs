@@ -2,6 +2,7 @@
 {
     public class BluegillWarrior : BaseServant
     {
+        public override string CardCode => "082";
         public override int Damage { get; set; }  = 2;
         public override int Life { get; set; }  = 1;
         public override int Cost { get; set; }  = 2;

@@ -10,6 +10,7 @@ namespace BattleForAzeroth.Game.CardLibrary.Spell.Paladin
 {
     public class Consecration : BaseSpell
     {
+        public override string CardCode => "086";
         public override Rarity Rare => Rarity.普通;
 
         public override string Name => "奉献";

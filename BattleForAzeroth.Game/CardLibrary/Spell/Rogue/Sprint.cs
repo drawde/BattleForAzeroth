@@ -9,6 +9,7 @@ namespace BattleForAzeroth.Game.CardLibrary.Spell.Rogue
 {
     public class Sprint : BaseSpell
     {
+        public override string CardCode => "066";
         public override Rarity Rare => Rarity.普通;
 
         public override string Name => "疾跑";

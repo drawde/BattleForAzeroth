@@ -12,6 +12,7 @@ namespace BattleForAzeroth.Game.CardLibrary.Servant.Warrior
 {
     public class WarsongCommander : BaseServant
     {
+        public override string CardCode => "025";
         public override int Damage { get; set; }  = 2;
         public override int Life { get; set; }  = 3;
         public override int Cost { get; set; }  = 3;

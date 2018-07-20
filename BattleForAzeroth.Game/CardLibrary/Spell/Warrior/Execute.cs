@@ -9,6 +9,7 @@ namespace BattleForAzeroth.Game.CardLibrary.Spell.Warrior
 {
     public class Execute : BaseSpell
     {
+        public override string CardCode => "036";
         public override Rarity Rare => Rarity.普通;
 
         public override string Name => "斩杀";

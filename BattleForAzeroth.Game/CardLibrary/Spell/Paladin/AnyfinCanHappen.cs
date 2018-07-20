@@ -13,6 +13,7 @@ namespace BattleForAzeroth.Game.CardLibrary.Spell.Paladin
 {
     public class AnyfinCanHappen : BaseSpell
     {
+        public override string CardCode => "085";
         public override Rarity Rare => Rarity.精良;
 
         public override string Name => "亡者归来";

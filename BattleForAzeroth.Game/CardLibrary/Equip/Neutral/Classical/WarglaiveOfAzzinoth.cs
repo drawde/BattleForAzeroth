@@ -13,6 +13,7 @@ namespace BattleForAzeroth.Game.CardLibrary.Equip.Neutral.Classical
 {
     public class WarglaiveOfAzzinoth : BaseEquip
     {
+        public override string CardCode => "021";
         public override string Name => "埃辛诺斯战刃";
 
         public override string BackgroudImage => "W19_a256_D.png";

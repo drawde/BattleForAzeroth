@@ -9,6 +9,7 @@ namespace BattleForAzeroth.Game.CardLibrary.Servant.Neutral.Classical
 {
     public class Doomsayer : BaseServant
     {
+        public override string CardCode => "076";
         public override int Damage { get; set; }  = 0;
         public override int Life { get; set; }  = 7;
         public override int Cost { get; set; }  = 2;

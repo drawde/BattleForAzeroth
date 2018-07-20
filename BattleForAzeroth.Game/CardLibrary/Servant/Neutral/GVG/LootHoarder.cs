@@ -14,6 +14,7 @@ namespace BattleForAzeroth.Game.CardLibrary.Servant.Neutral.GVG
 {
     public class LootHoarder : BaseServant
     {
+        public override string CardCode => "032";
         public override int Damage { get; set; }  = 2;
         public override int Life { get; set; }  = 1;
         public override int Cost { get; set; }  = 2;

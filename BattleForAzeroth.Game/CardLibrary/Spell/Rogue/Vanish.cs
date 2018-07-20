@@ -11,6 +11,7 @@ namespace BattleForAzeroth.Game.CardLibrary.Spell.Rogue
 {
     public class Vanish : BaseSpell
     {
+        public override string CardCode => "062";
         public override Rarity Rare => Rarity.普通;
 
         public override string Name => "消失";

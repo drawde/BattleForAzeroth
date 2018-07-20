@@ -11,6 +11,7 @@ namespace BattleForAzeroth.Game.CardLibrary.Spell.Warrior
 {
     public class ShieldBlock : BaseSpell
     {
+        public override string CardCode => "037";
         public override Rarity Rare => Rarity.普通;
 
         public override string Name => "盾牌格挡";

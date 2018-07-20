@@ -14,6 +14,7 @@ namespace BattleForAzeroth.Game.CardLibrary.Servant.Rogue
 {
     public class EdwinVanCleef : BaseServant
     {
+        public override string CardCode => "057";
         public override int Damage { get; set; } = 2;
         public override int Life { get; set; } = 2;
         public override int Cost { get; set; } = 3;

@@ -6,6 +6,7 @@ namespace BattleForAzeroth.Game.CardLibrary.Hero
 {
     public class Rogue : BaseHero
     {
+        public override string CardCode => "017";
         public override string Name => "盗贼";
         public override Profession Profession => Profession.Rogue;
         public override List<ICardAbility> Abilities => new List<ICardAbility>() { new RogueAbility() };

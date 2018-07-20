@@ -14,6 +14,7 @@ namespace BattleForAzeroth.Game.CardLibrary.Servant.Neutral.Classical
 {
     public class DireWolfAlpha : BaseServant
     {
+        public override string CardCode => "045";
         public override int Damage { get; set; }  = 2;
         public override int Life { get; set; }  = 2;
         public override int Cost { get; set; }  = 2;

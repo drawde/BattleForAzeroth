@@ -13,6 +13,7 @@ namespace BattleForAzeroth.Game.CardLibrary.Spell.Rogue
 {
     public class FanofKnives : BaseSpell
     {
+        public override string CardCode => "068";
         public override Rarity Rare => Rarity.普通;
 
         public override string Name => "刀扇";

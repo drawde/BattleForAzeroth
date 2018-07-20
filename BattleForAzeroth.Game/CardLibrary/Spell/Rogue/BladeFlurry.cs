@@ -13,6 +13,7 @@ namespace BattleForAzeroth.Game.CardLibrary.Spell.Rogue
 {
     public class BladeFlurry : BaseSpell
     {
+        public override string CardCode => "072";
         public override Rarity Rare => Rarity.普通;
 
         public override string Name => "剑刃乱舞";

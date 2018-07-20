@@ -12,6 +12,7 @@ namespace BattleForAzeroth.Game.CardLibrary.Spell.Warrior
 {
     public class InnerRage : BaseSpell
     {
+        public override string CardCode => "034";
         public override Rarity Rare => Rarity.普通;
 
         public override string Name => "怒火中烧";

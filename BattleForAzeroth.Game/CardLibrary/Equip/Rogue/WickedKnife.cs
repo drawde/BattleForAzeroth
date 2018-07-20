@@ -8,6 +8,7 @@ namespace BattleForAzeroth.Game.CardLibrary.Equip.Rogue
 {
     public class WickedKnife : BaseEquip
     {
+        public override string CardCode => "059";
         public override string Name => "邪恶短刀";
         public override string BackgroudImage => "W14_a200_D.png";
 

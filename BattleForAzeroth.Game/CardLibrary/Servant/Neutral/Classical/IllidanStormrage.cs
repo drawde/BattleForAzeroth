@@ -9,6 +9,7 @@ namespace BattleForAzeroth.Game.CardLibrary.Servant.Neutral.Classical
 {
     public class IllidanStormrage : BaseServant
     {
+        public override string CardCode => "022";
         public override int Damage { get; set; }  = 7;
         public override int Life { get; set; }  = 5;
         public override int Cost { get; set; }  = 8;

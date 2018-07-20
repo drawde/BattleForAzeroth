@@ -10,6 +10,7 @@ namespace BattleForAzeroth.Game.CardLibrary.Servant.Neutral.Classical
 {
     public class AcolyteOfPain : BaseServant
     {
+        public override string CardCode => "029";
         public override int Damage { get; set; }  = 1;
         public override int Life { get; set; }  = 3;
         public override int Cost { get; set; }  = 3;

@@ -2,6 +2,7 @@
 {
     public class Slime : BaseServant
     {
+        public override string CardCode => "091";
         public override int Damage { get; set; }  = 1;
         public override int Life { get; set; }  = 2;
         public override int Cost { get; set; }  = 2;

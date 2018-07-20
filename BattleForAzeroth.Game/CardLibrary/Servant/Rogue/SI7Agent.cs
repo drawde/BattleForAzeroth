@@ -12,6 +12,7 @@ namespace BattleForAzeroth.Game.CardLibrary.Servant.Rogue
 {
     public class SI7Agent : BaseServant
     {
+        public override string CardCode => "058";
         public override int Damage { get; set; }  = 3;
         public override int Life { get; set; }  = 3;
         public override int Cost { get; set; }  = 3;

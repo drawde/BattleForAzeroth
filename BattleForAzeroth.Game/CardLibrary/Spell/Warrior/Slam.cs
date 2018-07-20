@@ -12,6 +12,7 @@ namespace BattleForAzeroth.Game.CardLibrary.Spell.Warrior
 {
     public class Slam : BaseSpell
     {
+        public override string CardCode => "040";
         public override Rarity Rare => Rarity.普通;
 
         public override string Name => "猛击";

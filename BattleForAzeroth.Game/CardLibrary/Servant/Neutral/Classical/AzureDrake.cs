@@ -11,6 +11,7 @@ namespace BattleForAzeroth.Game.CardLibrary.Servant.Neutral.Classical
 {
     public class AzureDrake : BaseServant
     {
+        public override string CardCode => "064";
         public override int Damage { get; set; }  = 4;
         public override int Life { get; set; }  = 4;
         public override int Cost { get; set; }  = 5;

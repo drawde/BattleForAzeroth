@@ -10,6 +10,7 @@ namespace BattleForAzeroth.Game.CardLibrary.Servant.Warrior
 {
     public class FrothingBerserker : BaseServant
     {
+        public override string CardCode => "012";
         public override int Damage { get; set; }  = 2;
         public override int Life { get; set; }  = 4;
         public override int Cost { get; set; }  = 3;

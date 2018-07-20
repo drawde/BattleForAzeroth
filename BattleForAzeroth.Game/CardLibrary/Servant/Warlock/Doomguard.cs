@@ -10,6 +10,7 @@ namespace BattleForAzeroth.Game.CardLibrary.Servant.Warlock
 {
     public class Doomguard : BaseServant
     {
+        public override string CardCode => "043";
         public override int Damage { get; set; }  = 5;
         public override int Life { get; set; }  = 7;
         public override int Cost { get; set; }  = 5;

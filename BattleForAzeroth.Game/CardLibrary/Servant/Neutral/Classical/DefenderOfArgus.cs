@@ -13,6 +13,7 @@ namespace BattleForAzeroth.Game.CardLibrary.Servant.Neutral.Classical
 {
     public class DefenderOfArgus : BaseServant
     {
+        public override string CardCode => "008";
         public override int Damage { get; set; }  = 2;
         public override int Life { get; set; }  = 3;
         public override int Cost { get; set; }  = 4;

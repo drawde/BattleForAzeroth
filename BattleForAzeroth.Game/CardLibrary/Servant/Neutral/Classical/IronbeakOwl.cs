@@ -10,6 +10,7 @@ namespace BattleForAzeroth.Game.CardLibrary.Servant.Neutral.Classical
 {
     public class IronbeakOwl : BaseServant
     {
+        public override string CardCode => "038";
         public override int Damage { get; set; }  = 2;
         public override int Life { get; set; }  = 1;
         public override int Cost { get; set; }  = 1;

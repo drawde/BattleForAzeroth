@@ -7,8 +7,6 @@ namespace BattleForAzeroth.Game.CardLibrary.CardAbility.Driver.Spell
 {
     public class NoneTargetSpellDriver<T> : BaseSpellDriver<T>, ICapture<InParachuteFilter, NullEvent> where T : IGameAction
     {
-        public override bool TryCapture(Card card, IEvent @event) => false;
-
         public override AbilityType AbilityType => AbilityType.法术;
     }
 }

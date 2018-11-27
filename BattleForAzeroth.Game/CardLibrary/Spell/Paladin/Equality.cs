@@ -19,17 +19,15 @@ namespace BattleForAzeroth.Game.CardLibrary.Spell.Paladin
         public override Rarity Rare => Rarity.史诗;
 
         public override string Name => "生而平等";
-        public override int Cost { get; set; }  = 2;
+        public override int Cost { get; set; } = 2;
         public override int InitialCost => 2;
         public override string Describe => "将所有随从的生命值变为1。";
 
-        public override List<ICardAbility> Abilities => new List<ICardAbility>()
-        {
+        public override ICardAbility CardAbility { get; internal set; } =
             new NoneTargetSpellDriver
             <
-                SetLife<PrimaryUserContextFilter,InDeskFilter,NullServantFilter,ONE>
-            >(),
-        };
+                SetLife<PrimaryUserContextFilter, InDeskFilter, NullServantFilter, ONE>
+            >();
 
         public override string BackgroudImage => "Paladin/Equality.jpg";
         public override Profession Profession => Profession.Paladin;

@@ -28,13 +28,10 @@ namespace BattleForAzeroth.Game.CardLibrary.Servant.Rogue
 
         public override Rarity Rare => Rarity.传说;
 
-        public override List<ICardAbility> Abilities => new List<ICardAbility>()
-        {
-            new PrimaryPlayerPlayCardDriver<
-                    ChangeDamageAndLife<TertiaryFilter,Two,Two,Plus,InHandFilter,
-                    RestoreDamageAndLife<TertiaryFilter,Two,Two,Minus,InHandFilter,MyTurnEndEvent>>,
-                InHandFilter>()
-        };
+        public override ICardAbility CardAbility { get; internal set; } = new PrimaryPlayerPlayCardDriver<
+                    ChangeDamageAndLife<TertiaryFilter, Two, Two, Plus, InHandFilter,
+                    RestoreDamageAndLife<PrimaryFilter, Two, Two, Minus, InHandFilter, MyTurnEndEvent>>,
+                InHandFilter>();
 
         public override string Name => "艾德温·范克里夫";
         public override Profession Profession => Profession.Rogue;

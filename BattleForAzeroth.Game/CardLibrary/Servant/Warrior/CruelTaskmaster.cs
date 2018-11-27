@@ -13,16 +13,16 @@ namespace BattleForAzeroth.Game.CardLibrary.Servant.Warrior
     public class CruelTaskmaster : BaseServant
     {
         public override string CardCode => "030";
-        public override int Damage { get; set; }  = 2;
-        public override int Life { get; set; }  = 2;
-        public override int Cost { get; set; }  = 2;
+        public override int Damage { get; set; } = 2;
+        public override int Life { get; set; } = 2;
+        public override int Cost { get; set; } = 2;
 
         public override int InitialDamage => 2;
         public override int InitialLife => 2;
         public override int InitialCost => 2;
 
-        
-        public override int BuffLife { get; set; }  = 2;
+
+        public override int BuffLife { get; set; } = 2;
 
         public override string Describe
         {
@@ -40,15 +40,12 @@ namespace BattleForAzeroth.Game.CardLibrary.Servant.Warrior
             }
         }
 
-        public override List<ICardAbility> Abilities => new List<ICardAbility>()
-        {
-            new AllServantBattlecryDriver<
+        public override ICardAbility CardAbility { get; internal set; } =
+                new AllServantBattlecryDriver<
                 DoubleActionDriver<
-                    RiseDamage<SecondaryServantFilter,ONE,ONE,PhysicalDamage>,
-                    AddDamage<SecondaryServantFilter,Two>,NullFilter>
-                >(),
-            //new CA_CruelTaskmaster()
-        };
+                    RiseDamage<SecondaryServantFilter, ONE, ONE, PhysicalDamage>,
+                    AddDamage<SecondaryServantFilter, Two>, NullFilter>
+                >();
 
 
         public override string Name => "严酷的监工";

@@ -23,9 +23,7 @@ namespace BattleForAzeroth.Game.CardLibrary.Servant.Warlock
 
         public override string Describe => "嘲讽。";
 
-        public override Rarity Rare => Rarity.普通;
-
-        public override List<ICardAbility> Abilities => new List<ICardAbility>() { };
+        public override Rarity Rare => Rarity.普通;       
 
         public override string BackgroudImage => "Classical/Voidwalker.jpg";
 

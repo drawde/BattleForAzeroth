@@ -30,7 +30,6 @@ namespace BattleForAzeroth.Game.CardLibrary.CardAbility.BaseAbility
                 {
                     Card libCard = lstCardLib.First(c => c.CardCode == card.CardCode);
                     var newCard = Activator.CreateInstance(libCard.GetType()) as Card;
-                    newCard.CardCode = libCard.CardCode;
                     waitingCards.Add(newCard);
                 }
                 var resurrectionCards = cardPick.Filter(waitingCards, actionParameter);

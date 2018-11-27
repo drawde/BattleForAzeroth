@@ -19,9 +19,7 @@ namespace BattleForAzeroth.Game.CardLibrary.CardAction.Controler
             GameContext context = actionParameter.GameContext;
             bool isActivation = actionParameter.IsActivation;
 
-            T servant = Activator.CreateInstance<T>();
-            string cardCode = actionParameter.GameContext.GameCache.GetAllCard().First(c => c.GetType() == typeof(T)).CardCode;
-            servant.CardCode = cardCode;
+            T servant = Activator.CreateInstance<T>();                        
 
             var player = context.Players.First(c => c.IsActivation == isActivation);
             servant.IsFirstPlayerCard = player.IsFirst;

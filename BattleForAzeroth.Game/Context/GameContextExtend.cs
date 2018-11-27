@@ -13,6 +13,9 @@ using BattleForAzeroth.Game.Event;
 using BattleForAzeroth.Game.Event.Player;
 using BattleForAzeroth.Game.CardLibrary.CardAbility.Aura;
 using BattleForAzeroth.Game.CardLibrary.CardAction.Equip;
+using BattleForAzeroth.Game.CardLibrary.CardAbility.BUFF;
+using BattleForAzeroth.Game.Widget.Filter.CardLocationFilter;
+
 namespace BattleForAzeroth.Game.Context
 {
     /// <summary>
@@ -137,7 +140,7 @@ namespace BattleForAzeroth.Game.Context
         public static void StageRetrieval(this GameContext context)
         {
             bool hasQueueSettlement = false;
-            if (context.DeskCards.Any(c => c != null && c.Life < 1))
+            if (context.DeskCards.Any(c => c != null && (c.Life < 1 || c.IsDeathing)))
             {
                 //先按入场顺序排列
                 var lstBiology = context.DeskCards.Where(c => c != null && (c.Life < 1 || c.IsDeathing)).OrderBy(x => x.CastIndex);
@@ -149,7 +152,6 @@ namespace BattleForAzeroth.Game.Context
                         GameContext = context
                     };
                     CardActionFactory.CreateAction(bio, ActionType.死亡).Action(para);
-                    //bio.BiologyDead(context, null);
                 }
                 hasQueueSettlement = true;
             }
@@ -177,21 +179,20 @@ namespace BattleForAzeroth.Game.Context
         /// <param name="context"></param>
         public static void QueueSettlement(this GameContext context)
         {
-            EventQueueSettlement(context);
+            // EventQueueSettlement(context);
             LinkedList<ActionStatement> ll = context.ActionStatementQueue;
             if (ll != null && ll.Count > 0)
             {
                 LinkedListNode<ActionStatement> node = ll.First;
                 while (node != null)
                 {
-                    node.Value.Settlement();                    
+                    node.Value.Settlement();
                     Card deadCard = node.Value.CardActionParameter.PrimaryCard;
-                    if (deadCard != null && context.HearseCards.Any(c=>c.CardInGameCode == deadCard.CardInGameCode))
+                    if (deadCard != null && context.HearseCards.Any(c => c.CardInGameCode == deadCard.CardInGameCode))
                     {
                         UserContext uc = context.GetUserContextByMyCard(deadCard);
                         //进坟场
                         deadCard.CardLocation = CardLocation.坟场;
-                        //uc.GraveyardCards.Add(deadCard);
                         context.HearseCards.Remove(deadCard);
                     }
                     node = node.Next;
@@ -203,6 +204,16 @@ namespace BattleForAzeroth.Game.Context
             AuraSettlement(context);
             StageRetrieval(context);
             JudgeVictory(context);
+        }
+
+        public static void Settlement(this GameContext context)
+        {
+            EventQueueSettlement(context);
+            QueueSettlement(context);
+            if (context.EventQueue.Count > 0 || context.ActionStatementQueue.Count > 0)
+            {
+                Settlement(context);
+            }
         }
 
         public static void ClearHearse(this GameContext context)
@@ -224,7 +235,7 @@ namespace BattleForAzeroth.Game.Context
 
         public static void EventQueueSettlement(this GameContext context)
         {
-            AddEndOfPlayerActionEvent(context);
+            // AddEndOfPlayerActionEvent(context);
             LinkedList<IEvent> ll = context.EventQueue;
             if (ll != null && ll.Count > 0)
             {
@@ -237,18 +248,17 @@ namespace BattleForAzeroth.Game.Context
                 ll.Clear();
             }
         }
+
         public static void AddEndOfPlayerActionEvent(this GameContext context)
         {
-            foreach (Card card in context.AllCard)
+            var para = new ActionParameter()
             {
-                var para = new ActionParameter()
-                {
-                    PrimaryCard = card,
-                    GameContext = context
-                };
-                context.EventQueue.AddLast(new EndOfPlayerActionEvent() { EventCard = card, Parameter = para });
-            }
+                GameContext = context,
+                PrimaryCard = context.DeskCards.GetHeroByIsFirst(context.GetActivationUserContext().IsFirst)
+            };
+            context.EventQueue.AddLast(new EndOfPlayerActionEvent() { Parameter = para });
         }
+
         /// <summary>
         /// 光环结算
         /// </summary>
@@ -421,15 +431,16 @@ namespace BattleForAzeroth.Game.Context
             context.ActionStatementQueue.AddLast(statement);
         }
 
-        public static void AddActionStatements(this GameContext context, IEnumerable<IGameAction> IGameActions, ActionParameter actionParameter)
+        public static void AddActionStatements(this GameContext context, IGameAction gameAction, ActionParameter actionParameter)
         {
-            foreach (var gameAction in IGameActions)
-            {
-                AddActionStatement(context, gameAction, actionParameter);
-            }
+            AddActionStatement(context, gameAction, actionParameter);
         }
 
-        
+        // public static void AddActionStatements(this GameContext context, IBuffRestore<ICardLocationFilter, IEvent> buff, ActionParameter actionParameter)
+        // {
+        //     AddActionStatement(context, buff, actionParameter);
+        // }
+
 
         /// <summary>
         /// 获取当前回合玩家
@@ -545,7 +556,7 @@ namespace BattleForAzeroth.Game.Context
                 else if (heros.Count() > 0)
                 {
                     gameContext.GameStatus = heros.First().IsFirstPlayerCard ? GameStatus.后手胜利 : GameStatus.先手胜利;
-                }                
+                }
             }
         }
     }

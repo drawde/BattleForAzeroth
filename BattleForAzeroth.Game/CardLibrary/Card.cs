@@ -4,6 +4,7 @@ using BattleForAzeroth.Game.Widget.Filter.CardLocationFilter;
 using BattleForAzeroth.Game.Event;
 using BattleForAzeroth.Game.Parameter;
 using System.Collections.Generic;
+using BattleForAzeroth.Game.CardLibrary.CardAbility.BaseAbility;
 
 namespace BattleForAzeroth.Game.CardLibrary
 {
@@ -47,7 +48,7 @@ namespace BattleForAzeroth.Game.CardLibrary
         /// <summary>
         /// 卡牌编码
         /// </summary>
-        public virtual string CardCode { get; set; }
+        public virtual string CardCode { get;}
 
         /// <summary>
         /// 是否是某张牌的衍生物（如鬼灵爬行者 => 鬼灵蜘蛛）
@@ -57,7 +58,7 @@ namespace BattleForAzeroth.Game.CardLibrary
         /// <summary>
         /// 卡牌技能
         /// </summary>
-        public virtual List<ICardAbility> Abilities { get; set; } = new List<ICardAbility>();
+        public virtual ICardAbility CardAbility { get; internal set; } = new NullAbility();
 
         public virtual CardType CardType { get; set; } = CardType.无;
 

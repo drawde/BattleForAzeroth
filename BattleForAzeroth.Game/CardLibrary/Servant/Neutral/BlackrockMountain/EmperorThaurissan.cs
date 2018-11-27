@@ -13,24 +13,21 @@ namespace BattleForAzeroth.Game.CardLibrary.Servant.Neutral.BlackrockMountain
     public class EmperorThaurissan : BaseServant
     {
         public override string CardCode => "027";
-        public override int Damage { get; set; }  = 5;
-        public override int Life { get; set; }  = 5;
-        public override int Cost { get; set; }  = 6;
+        public override int Damage { get; set; } = 5;
+        public override int Life { get; set; } = 5;
+        public override int Cost { get; set; } = 6;
 
         public override int InitialDamage => 5;
         public override int InitialLife => 5;
         public override int InitialCost => 6;
 
-        
-        public override int BuffLife { get; set; }  = 5;
+
+        public override int BuffLife { get; set; } = 5;
         public override string Describe => "在你的回合结束时候，你的所有手牌费用-1。";
 
         public override Rarity Rare => Rarity.传说;
 
-        public override List<ICardAbility> Abilities => new List<ICardAbility>()
-        {
-            new MyTurnEndDriver<UpdateCost<PrimaryUserContextFilter,NoneFilter,ONE,Minus>,InDeskFilter>(),
-        };
+        public override ICardAbility CardAbility { get; internal set; } = new MyTurnEndDriver<UpdateCost<PrimaryUserContextFilter, NoneFilter, ONE, Minus>, InDeskFilter>();
 
 
         public override string Name => "索瑞森大帝";

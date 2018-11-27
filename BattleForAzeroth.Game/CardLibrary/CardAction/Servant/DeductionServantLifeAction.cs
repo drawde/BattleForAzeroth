@@ -31,9 +31,16 @@ namespace BattleForAzeroth.Game.CardLibrary.CardAction.Servant
                 servant.Life -= actionParameter.DamageOrHeal;
             }
 
-            gameContext.EventQueue.AddLast(new MyServantHurtEvent() { EventCard = servant, Parameter = actionParameter }); 
+            HurtEvent hurtEvent = new HurtEvent() { EventCard = servant, Parameter = actionParameter };
+            if (servant.CardAbility.TryCapture(servant, hurtEvent))
+            {
+                hurtEvent.Parameter.TertiaryCard = servant;
+                gameContext.AddActionStatements(servant.CardAbility, hurtEvent.Parameter);
+            }
+            
+            gameContext.EventQueue.AddLast(new MyServantHurtEvent() { EventCard = servant, Parameter = actionParameter });
             gameContext.EventQueue.AddLast(new AnyServantHurtEvent() { EventCard = servant, Parameter = actionParameter });
-            gameContext.EventQueue.AddLast(new AnyHurtEvent() { EventCard = servant, Parameter = actionParameter });            
+            gameContext.EventQueue.AddLast(new AnyHurtEvent() { EventCard = servant, Parameter = actionParameter });
             return null;
         }
     }

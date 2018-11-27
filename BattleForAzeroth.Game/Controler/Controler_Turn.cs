@@ -11,18 +11,19 @@ using BattleForAzeroth.Game.Parameter;
 using System.Collections.Generic;
 using System.Linq;
 using BattleForAzeroth.Game.Util;
+using BattleForAzeroth.Game.Event.Combo;
 
 namespace BattleForAzeroth.Game.Controler
 {
     public partial class Controler_Base
-    {        
+    {
         /// <summary>
         /// 回合结束
         /// </summary>                
         public void TurnEnd(IShortCodeService shortCodeService)
         {
             UserContext uc = GameContext.GetActivationUserContext(), next_uc = null;
-
+            uc.ComboSwitch = false;
             List<Card> buffCards = new List<Card>();
             buffCards.AddRange(GameContext.DeskCards.GetDeskCardsByIsFirst(uc.IsFirst));
             buffCards.AddRange(uc.HandCards);
@@ -30,27 +31,39 @@ namespace BattleForAzeroth.Game.Controler
             foreach (Card card in buffCards)
             {
                 LinkedListNode<IBuffRestore<ICardLocationFilter, IEvent>> buff = card.Buffs.First;
-                while (buff != null)
+                MyTurnEndEvent myTurnEndEvent = new MyTurnEndEvent()
+                {
+                    Parameter = new ActionParameter()
+                    {
+                        GameContext = GameContext,
+                        PrimaryCard = card
+                    }
+                };
+                while (buff != null && buff.Value.TryCapture(card, myTurnEndEvent))
                 {
                     buff.Value.Action(new ActionParameter()
                     {
                         GameContext = GameContext,
                         PrimaryCard = card
                     });
-                }
+                    // card.Buffs.Remove(buff);
+                    buff = buff.Next;                    
+                }                
             }
 
-            
+
             #region 调整玩家对象
             if (GameContext.TurnIndex > 0)
-            {                
+            {
                 next_uc = GameContext.GetNotActivationUserContext();
 
                 var para = new ActionParameter()
                 {
-                    GameContext = GameContext
+                    GameContext = GameContext,
+                    PrimaryCard = GameContext.GetHeroByActivation(next_uc.IsFirst)
                 };
                 GameContext.EventQueue.AddLast(new MyTurnEndEvent() { Parameter = para });
+                GameContext.EventQueue.AddLast(new TouchOffComboEvent() { Parameter = para });
                 foreach (var bio in GameContext.DeskCards.Where(c => c != null))
                 {
                     BaseBiology biology = bio as BaseBiology;
@@ -61,10 +74,10 @@ namespace BattleForAzeroth.Game.Controler
                 GameContext.QueueSettlement();
                 _gameCache.SetContext(GameContext);
                 //DataExchangeBll.Instance.AsyncInsert("TurnEnd", "Controler_Base", "", JsonConvert.SerializeObject(GameContext), DataSourceEnum.GameControler);
-                
+
                 uc.IsActivation = false;
                 next_uc.IsActivation = true;
-                
+
             }
             else
             {
@@ -77,18 +90,20 @@ namespace BattleForAzeroth.Game.Controler
             #region 调整游戏环境对象
             GameContext.CurrentTurnRemainingSecond = 60;
             GameContext.CurrentTurnCode = GameContext.NextTurnCode;
-            GameContext.NextTurnCode = shortCodeService.CreateCode(3);            
+            GameContext.NextTurnCode = shortCodeService.CreateCode();
             GameContext.TurnIndex++;
 
             #endregion
-            Settlement();
+            GameContext.Settlement();
+            _gameCache.SetContext(GameContext);
         }
 
         public void TurnStart()
         {
             var cap = new ActionParameter()
             {
-                GameContext = GameContext
+                GameContext = GameContext,
+                PrimaryCard = GameContext.GetHeroByActivation()
             };
             GameContext.EventQueue.AddLast(new MyTurnStartEvent() { Parameter = cap });
 
@@ -98,7 +113,6 @@ namespace BattleForAzeroth.Game.Controler
                 uc.FullPower += 1;
             }
             uc.Power = uc.FullPower;
-            uc.ComboSwitch = false;
 
             //抽牌
             var para = new ActionParameter()
@@ -126,7 +140,8 @@ namespace BattleForAzeroth.Game.Controler
                 };
                 CardActionFactory.CreateAction(card, ActionType.重置攻击次数).Action(resetPara);
             }
-            Settlement();
+            GameContext.Settlement();
+            _gameCache.SetContext(GameContext);
         }
     }
 }

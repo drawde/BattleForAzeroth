@@ -14,26 +14,26 @@ namespace BattleForAzeroth.Game.CardLibrary.Servant.Neutral.NAXX
     public class GuiLingZhiZhu : BaseServant
     {
         public override string CardCode => "005";
-        public override int Damage { get; set; }  = 1;
-        public override int Life { get; set; }  = 2;
-        public override int Cost { get; set; }  = 2;
+        public override int Damage { get; set; } = 1;
+        public override int Life { get; set; } = 2;
+        public override int Cost { get; set; } = 2;
 
         public override int InitialDamage => 1;
         public override int InitialLife => 2;
         public override int InitialCost => 2;
-        
-        public override int BuffLife { get; set; }  = 2;
+
+        public override int BuffLife { get; set; } = 2;
         public override string Describe => "";
 
         public override Rarity Rare => Rarity.精良;
 
-        public override List<ICardAbility> Abilities => new List<ICardAbility>()
-        {
+        public override ICardAbility CardAbility { get; internal set; } =
             new DeathWhisperDriver
             <
-                Summon<PrimaryUserContextFilter,NullFilter,AssignServantFilter<XiaoZhiZhu>,AllPickFilter,Two>
-            ,InDeskFilter>()
-        };
+                Summon<PrimaryUserContextFilter, AssignServantFilter<XiaoZhiZhu>, Two>
+                ,
+                InDeskFilter
+            >();
 
         public override string Name => "鬼灵爬行者";
         public override Profession Profession => Profession.Neutral;

@@ -3,7 +3,7 @@ using BattleForAzeroth.Game.Parameter;
 
 namespace BattleForAzeroth.Game.CardLibrary.CardAbility.BaseAbility
 {
-    public class Null : ICardAbility
+    public class NullAbility : ICardAbility
     {
         public IActionOutputParameter Action(ActionParameter actionParameter)
         {

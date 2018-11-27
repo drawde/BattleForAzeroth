@@ -9,7 +9,7 @@ namespace BattleForAzeroth.Game.Widget.Filter.ParameterFilter
         public bool NoCache { get; set; } = true;
         public Func<Card, bool> Filter(ActionParameter actionParameter)
         {
-            UserContext user = actionParameter.GameContext.GetUserContextByMyCard(actionParameter.PrimaryCard);
+            UserContext user = actionParameter.GameContext.GetUserContextByEnemyCard(actionParameter.PrimaryCard);
             return new Func<Card, bool>(c => c != null && (c.CardType == CardType.随从 || c.CardType == CardType.英雄) && c.IsFirstPlayerCard == user.IsFirst);
         }
     }

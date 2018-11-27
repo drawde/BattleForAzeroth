@@ -5,6 +5,8 @@ using BattleForAzeroth.Game.CardLibrary.Servant;
 using BattleForAzeroth.Game.Context;
 using BattleForAzeroth.Game.Parameter;
 using System.Linq;
+using System;
+
 namespace BattleForAzeroth.Game.CardLibrary.CardAction.Servant
 {
     /// <summary>
@@ -25,16 +27,16 @@ namespace BattleForAzeroth.Game.CardLibrary.CardAction.Servant
                 gameContext.DeskCards[servant.DeskIndex] = null;
                 gameContext.HearseCards.AddLast(servant);
 
-                if (servant.Abilities.Any(c => c is DeathWhisperDriver<IGameAction, ICardLocationFilter>))
+                if (servant.CardAbility.GetType().Name == typeof(DeathWhisperDriver<IGameAction, ICardLocationFilter>).Name)
                 {
-                    gameContext.AddActionStatement(servant.Abilities.First(), new ActionParameter()
+                    gameContext.AddActionStatement(servant.CardAbility, new ActionParameter()
                     {
                         GameContext = gameContext,
                         PrimaryCard = servant,
                         SecondaryCard = triggerCard,
-                    });                    
+                    });
                 }
-            }            
+            }
             return null;
         }
     }

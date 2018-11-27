@@ -27,7 +27,7 @@ namespace BattleForAzeroth.Game.CardLibrary.CardAbility.Driver
         }
         public override bool TryCapture(Card card, IEvent @event)
         {            
-            return GameActivator<F>.CreateInstance().Filter(card) && @event.GetType() == typeof(E) && @event.EventCard.IsFirstPlayerCard == card.IsFirstPlayerCard;
+            return GameActivator<F>.CreateInstance().Filter(card) && Activator.CreateInstance<E>().Compare(@event) && @event.EventCard.IsFirstPlayerCard == card.IsFirstPlayerCard;
         }
     }
 }

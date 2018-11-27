@@ -15,33 +15,35 @@ namespace BattleForAzeroth.Game.CardLibrary.Servant.Neutral.Classical
     public class DireWolfAlpha : BaseServant
     {
         public override string CardCode => "045";
-        public override int Damage { get; set; }  = 2;
-        public override int Life { get; set; }  = 2;
-        public override int Cost { get; set; }  = 2;
+        public override int Damage { get; set; } = 2;
+        public override int Life { get; set; } = 2;
+        public override int Cost { get; set; } = 2;
 
         public override int InitialDamage => 2;
         public override int InitialLife => 2;
         public override int InitialCost => 2;
-        
-        public override int BuffLife { get; set; }  = 2;
+
+        public override int BuffLife { get; set; } = 2;
 
         public override string Describe => "相邻的随从获得+1攻击力。";
 
         public override Rarity Rare => Rarity.普通;
-
-        public override List<ICardAbility> Abilities { get; set; }
         public DireWolfAlpha()
         {
-            Abilities = new List<ICardAbility>()
-            {
-                new AuraDriver<
-                    StandardAura<
-                        ChangeDamage<PrimaryCardBothSidesFilter,ONE,Plus,InDeskFilter,
-                            RestoreDamage<PrimaryServantFilter,ONE,Minus,InDeskFilter,NullEvent>
-                        >>,
+            CardAbility =
+                new AuraDriver
+                <
+                    StandardAura
+                    <
+                        ChangeDamage
+                        <
+                            PrimaryCardBothSidesFilter, ONE, Plus, InDeskFilter,
+                            RestoreDamage<PrimaryServantFilter, ONE, Minus, InDeskFilter, NullEvent>
+                        >
+                    >,
                     InDeskFilter,
-                    ServantInDeskEvent>(this)
-            };
+                    ServantInDeskEvent
+                >(this);
         }
         public override string BackgroudImage => "WOW_TAL_008_D.png";
 

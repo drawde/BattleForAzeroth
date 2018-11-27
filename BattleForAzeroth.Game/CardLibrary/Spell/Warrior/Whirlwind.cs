@@ -16,19 +16,15 @@ namespace BattleForAzeroth.Game.CardLibrary.Spell.Warrior
         public override Rarity Rare => Rarity.普通;
 
         public override string Name => "旋风斩";
-        public override int Cost { get; set; }  = 1;
+        public override int Cost { get; set; } = 1;
         public override int InitialCost => 1;
         public override string Describe => "对所有随从造成1点伤害。";
 
-        public override List<ICardAbility> Abilities => new List<ICardAbility>()
-        {
-            new NoneTargetSpellDriver<RiseDamage<AllServantFilter,ONE,ONE,SpellDamage>>(),
-            //new CA_Whirlwind()
-        };
+        public override ICardAbility CardAbility { get; internal set; } = new NoneTargetSpellDriver<RiseDamage<AllServantFilter, ONE, ONE, SpellDamage>>();
 
         public override string BackgroudImage => "W6_076_D.png";
         public override Profession Profession => Profession.Warrior;
 
-        public override int Damage { get; set; }  = 1;
+        public override int Damage { get; set; } = 1;
     }
 }

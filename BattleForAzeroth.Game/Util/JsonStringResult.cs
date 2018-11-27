@@ -67,7 +67,7 @@ namespace BattleForAzeroth.Game.Util
         }
         public static string SuccessResult<T>(T model)
         {
-            APISingleModelResult<T> textRes = new APISingleModelResult<T>();
+            GameResult<T> textRes = new GameResult<T>();
             textRes.code = OperateResCodeEnum.成功.GetHashCode();
             textRes.msg = OperateResCodeEnum.成功.ToString();
             textRes.data = model;

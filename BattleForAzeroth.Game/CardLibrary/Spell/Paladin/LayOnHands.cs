@@ -18,21 +18,19 @@ namespace BattleForAzeroth.Game.CardLibrary.Spell.Paladin
         public override Rarity Rare => Rarity.史诗;
 
         public override string Name => "圣疗";
-        public override int Cost { get; set; }  = 8;
+        public override int Cost { get; set; } = 8;
         public override int InitialCost => 8;
         public override string Describe => "恢复8点生命。抽3张牌。";
 
-        public override List<ICardAbility> Abilities => new List<ICardAbility>()
-        {
+        public override ICardAbility CardAbility { get; internal set; } =
             new AllTargetSpellDriver
             <
                 DoubleAbility
                 <
-                    Heal<SecondaryFilter,Eight>,
-                    DrawCard<PrimaryUserContextFilter,Three>
+                    Heal<SecondaryFilter, Eight>,
+                    DrawCard<PrimaryUserContextFilter, Three>
                 >
-            >(),
-        };
+            >();
 
         public override string BackgroudImage => "Paladin/LayOnHands.jpg";
         public override Profession Profession => Profession.Paladin;

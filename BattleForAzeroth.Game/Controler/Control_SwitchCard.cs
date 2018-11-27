@@ -68,7 +68,7 @@ namespace BattleForAzeroth.Game.Controler
 
                 TurnEnd(shortCodeService);
             }
-            Settlement();
+            GameContext.Settlement();
         }
     }
 }

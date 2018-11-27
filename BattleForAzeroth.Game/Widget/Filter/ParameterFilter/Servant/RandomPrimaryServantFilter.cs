@@ -16,7 +16,7 @@ namespace BattleForAzeroth.Game.Widget.Filter.ParameterFilter.Servant
         {
             UserContext user = actionParameter.GameContext.GetUserContextByMyCard(actionParameter.PrimaryCard);
             var targets = actionParameter.GameContext.DeskCards.GetDeskServantsByIsFirst(user.IsFirst).ToList();
-            return new Func<Card, bool>(c => c.CardInGameCode == targets[RandomUtil.CreateRandomInt(0, targets.Count() - 1)].CardInGameCode);
+            return new Func<Card, bool>(c => c != null && c.CardInGameCode == targets[RandomUtil.CreateRandomInt(0, targets.Count() - 1)].CardInGameCode);
         }
     }
 }

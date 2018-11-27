@@ -6,6 +6,7 @@ using BattleForAzeroth.Game.CardLibrary.CardAction.Servant;
 using BattleForAzeroth.Game.Parameter;
 using BattleForAzeroth.Game.Action;
 using BattleForAzeroth.Game.Event.Player;
+using BattleForAzeroth.Game.Event.Combo;
 
 namespace BattleForAzeroth.Game.Controler
 {
@@ -21,7 +22,7 @@ namespace BattleForAzeroth.Game.Controler
         {
             var user = GameContext.GetActivationUserContext();
             user.Power -= servant.Cost < 0 ? 0 : servant.Cost;
-            user.ComboSwitch = true;
+            
 
             location = GameContext.AutoShiftServant(GameContext.ShiftServant(location));
             GameContext.ParachuteCard = servant;
@@ -46,9 +47,13 @@ namespace BattleForAzeroth.Game.Controler
 
             new CastServantAction().Action(para);
             GameContext.ParachuteCard = null;
-            GameContext.AddEndOfPlayerActionEvent();
+            // user.ComboSwitch = true;            
+            GameContext.AddActionStatement(new ComboOnAction(), para);
+            // GameContext.AddEndOfPlayerActionEvent();
             GameContext.EventQueueSettlement();
             GameContext.QueueSettlement();
+            
+            _gameCache.SetContext(GameContext);
         }
 
 
@@ -66,7 +71,9 @@ namespace BattleForAzeroth.Game.Controler
                 SecondaryCard = GameContext.DeskCards[target]
             };
             CardActionFactory.CreateAction(servant, ActionType.攻击).Action(para);
-            Settlement();
+            // GameContext.AddEndOfPlayerActionEvent();
+            GameContext.Settlement();
+            _gameCache.SetContext(GameContext);
         }
     }
 }

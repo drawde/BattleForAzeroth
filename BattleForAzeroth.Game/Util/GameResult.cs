@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BattleForAzeroth.Game.Util
 {
-    public class APISingleModelResult<T> : APIResultBase
+    public class GameResult<T> : APIResultBase
     {
         public T data { get; set; }
     }

@@ -10,6 +10,9 @@ namespace BattleForAzeroth.Game.CardLibrary.Equip.Paladin
 {
     public class TruesilverChampion : BaseEquip
     {
+        public override ICardAbility CardAbility { get; internal set; } = new HeroAttackingDriver<
+                            Heal<PrimaryHeroFilter, Two>,
+                            InDeskFilter>();
         public override string CardCode => "089";
         public override string Name => "真银圣剑";
 
@@ -21,13 +24,6 @@ namespace BattleForAzeroth.Game.CardLibrary.Equip.Paladin
         public override int InitialCost => 4;
         public override int InitialDamege => 4;
         public override Rarity Rare => Rarity.普通;
-
-        public override List<ICardAbility> Abilities => new List<ICardAbility>() {
-            new HeroAttackingDriver<
-                Heal<PrimaryHeroFilter,Two>,
-                InDeskFilter>()
-        };
-
         public override string Describe => "每当你的英雄进攻时，为其恢复2点生命值。";
         public override Profession Profession => Profession.Paladin;
     }

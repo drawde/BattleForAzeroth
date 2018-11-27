@@ -19,15 +19,11 @@ namespace BattleForAzeroth.Game.CardLibrary.Spell.Rogue
         public override Rarity Rare => Rarity.普通;
 
         public override string Name => "闷棍";
-        public override int Cost { get; set; }  = 2;
+        public override int Cost { get; set; } = 2;
         public override int InitialCost => 2;
         public override string Describe => "将一个敌方随从移回其拥有者的手牌。";
 
-        public override List<ICardAbility> Abilities => new List<ICardAbility>()
-        {
-            new SpellDriver_Single_AllEnemyServant<Recover<SecondaryServantFilter>>(),
-            //new CA_Sap()
-        };
+        public override ICardAbility CardAbility { get; internal set; } = new SpellDriver_Single_AllEnemyServant<Recover<SecondaryServantFilter>>();
 
         public override string BackgroudImage => "Classical/Sap.jpg";
         public override Profession Profession => Profession.Rogue;

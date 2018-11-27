@@ -13,6 +13,22 @@ namespace BattleForAzeroth.Game.CardLibrary.Equip.Neutral.Classical
 {
     public class WarglaiveOfAzzinoth : BaseEquip
     {
+        public override ICardAbility CardAbility { get; internal set; } =
+                    new HeroAttackingDriver
+                    <
+                        Assert
+                        <
+                            SecondaryCardIsHero,
+                            DoubleAbility
+                            <
+                                Silence<SecondaryFilter>,
+                                ArmorPenetration<SecondaryHeroFilter, ExtractCardDamage<SecondaryFilter, InDeskFilter>>
+                            >,
+                            Silence<SecondaryFilter>
+                        >,
+                        InDeskFilter
+                    >();
+
         public override string CardCode => "021";
         public override string Name => "埃辛诺斯战刃";
 
@@ -24,21 +40,6 @@ namespace BattleForAzeroth.Game.CardLibrary.Equip.Neutral.Classical
         public override int InitialDamege => 3;
 
         public override bool IsDerivative => true;
-
-        public override List<ICardAbility> Abilities => new List<ICardAbility>() {
-            new HeroAttackingDriver<
-                Assert
-                <
-                    SecondaryCardIsHero,
-                    DoubleAbility
-                    <
-                        Silence<SecondaryFilter>,
-                        ArmorPenetration<SecondaryHeroFilter,ExtractCardDamage<SecondaryFilter,InDeskFilter>>
-                    >,
-                    Silence<SecondaryFilter>
-                >,
-                InDeskFilter>()
-        };
 
         public override string Describe => "攻击目标是随从时，沉默该随从；攻击目标是英雄时，去除所有奥秘，无视护甲";
         public override Profession Profession => Profession.Neutral;

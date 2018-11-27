@@ -21,13 +21,11 @@ namespace BattleForAzeroth.Game.CardLibrary.Spell.Paladin
         public override int InitialCost => 10;
         public override string Describe => "召唤七个在本局对战中死亡的鱼人。";
 
-        public override List<ICardAbility> Abilities => new List<ICardAbility>()
-        {
+        public override ICardAbility CardAbility { get; internal set; } =
             new NoneTargetSpellDriver
             <
-                Summon<PrimaryUserContextFilter,InGraveyardFilter,RaceCardFilter<Murloc>,RandomCardPickFilter<Seven>,ONE>
-            >(),
-        };
+                Resurrection<PrimaryUserContextFilter, RaceCardFilter<Murloc>, RandomCardPickFilter<Seven>>
+            >();
 
         public override string BackgroudImage => "Paladin/AnyfinCanHappen.jpg";
         public override Profession Profession => Profession.Paladin;

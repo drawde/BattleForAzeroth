@@ -29,7 +29,7 @@ namespace BattleForAzeroth.Game.CardLibrary.CardAbility.BUFF.CardStatus
         {
             F locationFilter = GameActivator<F>.CreateInstance();
             ICardLocationFilter filter = GameActivator<F>.CreateInstance();
-            return filter.Filter(card) && @event.GetType() == locationFilter.GetType() && @event.Parameter.GameContext.IsThisActivationUserCard(card);
+            return filter.Filter(card) && Activator.CreateInstance<EVENT>().Compare(@event) && @event.Parameter.GameContext.IsThisActivationUserCard(card);
         }
     }
 }

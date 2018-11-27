@@ -13,24 +13,21 @@ namespace BattleForAzeroth.Game.CardLibrary.Servant.Neutral.NAXX
     public class NerubianEgg : BaseServant
     {
         public override string CardCode => "046";
-        public override int Damage { get; set; }  = 0;
-        public override int Life { get; set; }  = 2;
-        public override int Cost { get; set; }  = 2;
+        public override int Damage { get; set; } = 0;
+        public override int Life { get; set; } = 2;
+        public override int Cost { get; set; } = 2;
 
         public override int InitialDamage => 0;
         public override int InitialLife => 2;
         public override int InitialCost => 2;
-        
-        public override int BuffLife { get; set; }  = 2;
+
+        public override int BuffLife { get; set; } = 2;
 
         public override string Describe => "亡语：召唤一个4/4的蛛魔。";
 
         public override Rarity Rare => Rarity.精良;
 
-        public override List<ICardAbility> Abilities => new List<ICardAbility>()
-        {
-            new DeathWhisperDriver<Summon<PrimaryUserContextFilter,NullFilter,AssignServantFilter<Nerubian>,AllPickFilter,ONE>,InDeskFilter>()
-        };
+        public override ICardAbility CardAbility { get; internal set; } = new DeathWhisperDriver<Summon<PrimaryUserContextFilter, AssignServantFilter<Nerubian>, ONE>, InDeskFilter>();
 
         public override string BackgroudImage => "NAXX/NerubianEgg.jpg";
 

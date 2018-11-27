@@ -2,6 +2,6 @@
 {
     public interface IShortCodeService
     {
-        string CreateCode(int shortCodeType);
+        string CreateCode();
     }
 }

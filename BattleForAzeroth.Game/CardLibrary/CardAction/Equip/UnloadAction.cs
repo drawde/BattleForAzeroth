@@ -21,9 +21,9 @@ namespace BattleForAzeroth.Game.CardLibrary.CardAction.Equip
             baseHero.Equip.CardLocation = CardLocation.灵车;
             gameContext.HearseCards.AddLast(baseHero.Equip);
 
-            if (baseHero.Equip.Abilities.Any(c => c is DeathWhisperDriver<IGameAction, ICardLocationFilter>))
+            if (baseHero.Equip.CardAbility is DeathWhisperDriver<IGameAction, ICardLocationFilter>)
             {
-                gameContext.AddActionStatement(baseHero.Equip.Abilities.First(), new ActionParameter()
+                gameContext.AddActionStatement(baseHero.Equip.CardAbility, new ActionParameter()
                 {
                     GameContext = gameContext,
                     PrimaryCard = baseHero.Equip,

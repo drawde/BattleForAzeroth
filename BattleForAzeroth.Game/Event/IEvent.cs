@@ -12,5 +12,6 @@ namespace BattleForAzeroth.Game.Event
         Card EventCard { get; set; }
 
         void Settlement();
+        bool Compare(IEvent target);
     }
 }

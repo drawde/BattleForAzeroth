@@ -17,23 +17,19 @@ namespace BattleForAzeroth.Game.CardLibrary.Spell.Rogue
         public override Rarity Rare => Rarity.普通;
 
         public override string Name => "刀扇";
-        public override int Cost { get; set; }  = 3;
+        public override int Cost { get; set; } = 3;
         public override int InitialCost => 3;
         public override string Describe => "对所有敌方随从造成1点伤害，抽一张牌。";
 
-        public override List<ICardAbility> Abilities => new List<ICardAbility>()
-        {            
-            new NoneTargetSpellDriver<
+        public override ICardAbility CardAbility { get; internal set; } = new NoneTargetSpellDriver<
                 DoubleActionDriver<
-                    RiseDamage<AllEnemyServantFilter,ONE,ONE,SpellDamage>,
-                    DrawCard<PrimaryUserContextFilter,ONE>,
-                NullFilter>>(),
-            //new CA_FanofKnives()
-        };
+                    RiseDamage<AllEnemyServantFilter, ONE, ONE, SpellDamage>,
+                    DrawCard<PrimaryUserContextFilter, ONE>,
+                NullFilter>>();
 
         public override string BackgroudImage => "Classical/FanofKnives.jpg";
         public override Profession Profession => Profession.Rogue;
 
-        public override int Damage { get; set; }  = 1;
+        public override int Damage { get; set; } = 1;
     }
 }

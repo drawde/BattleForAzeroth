@@ -13,14 +13,11 @@ namespace BattleForAzeroth.Game.CardLibrary.Spell.Warrior
         public override Rarity Rare => Rarity.普通;
 
         public override string Name => "斩杀";
-        public override int Cost { get; set; }  = 1;
+        public override int Cost { get; set; } = 1;
         public override int InitialCost => 1;
         public override string Describe => "消灭一个受过伤害的敌方随从。";
 
-        public override List<ICardAbility> Abilities => new List<ICardAbility>()
-        {
-            new SpellDriver_Single_AllEnemyServant<Assert<SecondaryCardIsInjured,Death<SecondaryServantFilter>,Null>>()
-        };
+        public override ICardAbility CardAbility { get; internal set; } = new SpellDriver_Single_AllEnemyServant<Assert<SecondaryCardIsInjured, Death<SecondaryServantFilter>, NullAbility>>();
 
         public override string BackgroudImage => "WoW_Chi_061_D.png";
         public override Profession Profession => Profession.Warrior;

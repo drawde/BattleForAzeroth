@@ -13,14 +13,11 @@ namespace BattleForAzeroth.Game.CardLibrary.Spell.Rogue
         public override Rarity Rare => Rarity.普通;
 
         public override string Name => "疾跑";
-        public override int Cost { get; set; }  = 7;
+        public override int Cost { get; set; } = 7;
         public override int InitialCost => 7;
         public override string Describe => "抽4张牌。";
 
-        public override List<ICardAbility> Abilities => new List<ICardAbility>()
-        {
-            new NoneTargetSpellDriver<DrawCard<PrimaryUserContextFilter,Four>>()
-        };
+        public override ICardAbility CardAbility { get; internal set; } = new NoneTargetSpellDriver<DrawCard<PrimaryUserContextFilter, Four>>();
 
         public override string BackgroudImage => "Classical/Sprint.jpg";
         public override Profession Profession => Profession.Rogue;

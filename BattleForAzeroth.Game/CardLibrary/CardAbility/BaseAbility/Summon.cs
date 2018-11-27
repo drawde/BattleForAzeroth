@@ -16,28 +16,27 @@ namespace BattleForAzeroth.Game.CardLibrary.CardAbility.BaseAbility
     /// 召唤一个随从到场上
     /// </summary>
     /// <typeparam name="F"></typeparam>
-    public class Summon<UC, CardLocation, F, CardPick, NUM> : ICardAbility where UC : IUserContextFilter where F : IServantCardFilter where CardPick : ICardPickFilter where NUM : INumber where CardLocation : ICardLocationFilter
+    public class Summon<UC, F, NUM> : ICardAbility where UC : IUserContextFilter where F : IServantCardFilter where NUM : INumber
     {
         public IActionOutputParameter Action(ActionParameter actionParameter)
         {
             UC uc = GameActivator<UC>.CreateInstance();
             var users = actionParameter.GameContext.Players.Where(uc.Filter(actionParameter));
             var filter = Activator.CreateInstance<F>();
-            CardLocation cardLocation = GameActivator<CardLocation>.CreateInstance();
+            //CardLocation cardLocation = GameActivator<CardLocation>.CreateInstance();
             List<Card> summonCards = new List<Card>();
-            CardPick cardPick = Activator.CreateInstance<CardPick>();
+            // CardPick cardPick = Activator.CreateInstance<CardPick>();
             summonCards.AddRange(actionParameter.GameContext.GameCache.GetAllCard().Where(filter.Filter(actionParameter)));
 
             NUM num = GameActivator<NUM>.CreateInstance();
             foreach (UserContext user in users)
             {
-                summonCards = cardPick.Filter(summonCards.Where(c => user.AllCards.Where(x => cardLocation.Filter(x)).Any(z => z.CardCode == c.CardCode)).ToList(), actionParameter).ToList();
+                //summonCards = cardPick.Filter(summonCards.Where(c => user.AllCards.Where(x => cardLocation.Filter(x)).Any(z => z.CardCode == c.CardCode)).ToList(), actionParameter).ToList();
                 foreach (Card card in summonCards)
                 {
                     for (int i = 0; i < num.GetNumber(actionParameter); i++)
                     {
                         var newCard = Activator.CreateInstance(card.GetType()) as Card;
-                        newCard.CardCode = card.CardCode;
                         CreateNewCardInDeskAction action = new CreateNewCardInDeskAction();
                         var para = new ActionParameter()
                         {

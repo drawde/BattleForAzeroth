@@ -19,11 +19,8 @@ namespace BattleForAzeroth.Game.CardLibrary.Servant.Shaman.Classical
         public override int InitialCost => 8;
         
         public override int BuffLife { get; set; }  = 4;
-        public override CardLocation CardLocation { get; set; }
-
-        public override List<ICardAbility> Abilities => new List<ICardAbility>() { };
+        public override CardLocation CardLocation { get; set; }        
         public override string Describe => "风怒，冲锋，圣盾，嘲讽";
-
         public override Rarity Rare => Rarity.传说;
 
         public override string Name => "风领主奥拉基尔";

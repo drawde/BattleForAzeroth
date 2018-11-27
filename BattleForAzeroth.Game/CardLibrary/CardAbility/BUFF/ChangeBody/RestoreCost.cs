@@ -8,6 +8,7 @@ using BattleForAzeroth.Game.Widget.Filter.CardLocationFilter;
 using BattleForAzeroth.Game.Event;
 using System;
 using BattleForAzeroth.Game.Context;
+using System.Collections.Generic;
 
 namespace BattleForAzeroth.Game.CardLibrary.CardAbility.BUFF.ChangeBody
 {
@@ -43,9 +44,8 @@ namespace BattleForAzeroth.Game.CardLibrary.CardAbility.BUFF.ChangeBody
 
         public bool TryCapture(Card card, IEvent @event)
         {
-            F locationFilter = GameActivator<F>.CreateInstance();
-            ICardLocationFilter filter = GameActivator<F>.CreateInstance();
-            return filter.Filter(card) && @event.GetType() == locationFilter.GetType() && @event.Parameter.GameContext.IsThisActivationUserCard(card);
+            ICardLocationFilter filter = GameActivator<F>.CreateInstance();            
+            return filter.Filter(card) && Activator.CreateInstance<EVENT>().Compare(@event) && @event.Parameter.GameContext.IsThisActivationUserCard(card);
         }
     }
 }

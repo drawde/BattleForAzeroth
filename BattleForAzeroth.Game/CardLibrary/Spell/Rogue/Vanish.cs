@@ -15,15 +15,11 @@ namespace BattleForAzeroth.Game.CardLibrary.Spell.Rogue
         public override Rarity Rare => Rarity.普通;
 
         public override string Name => "消失";
-        public override int Cost { get; set; }  = 6;
+        public override int Cost { get; set; } = 6;
         public override int InitialCost => 6;
         public override string Describe => "将所有随从移回其拥有者的手牌。";
 
-        public override List<ICardAbility> Abilities => new List<ICardAbility>()
-        {
-            new NoneTargetSpellDriver<Recover<AllServantFilter>>(),
-            //new CA_Vanish()
-        };
+        public override ICardAbility CardAbility { get; internal set; } = new NoneTargetSpellDriver<Recover<AllServantFilter>>();
 
         public override string BackgroudImage => "Classical/Vanish.jpg";
         public override Profession Profession => Profession.Rogue;

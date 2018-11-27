@@ -27,10 +27,10 @@ namespace BattleForAzeroth.Game.CardLibrary.CardAbility.BUFF.ChangeBody
             BuffRestore = buff;
             for (int i = 0; i < qat.GetNumber(actionParameter); i++)
             {
-                foreach (BaseBiology biology in actionParameter.GameContext.AllCard.Where(tag.Filter(actionParameter)).OrderBy(c => c.CastIndex))
+                foreach (Card card in actionParameter.GameContext.AllCard.Where(tag.Filter(actionParameter)).OrderBy(c => c.CastIndex))
                 {
-                    biology.Cost += direction.SetNumber(num);
-                    biology.Buffs.AddLast(buff);
+                    card.Cost += direction.SetNumber(num);
+                    card.Buffs.AddLast(buff);
                 }
             }
             return null;

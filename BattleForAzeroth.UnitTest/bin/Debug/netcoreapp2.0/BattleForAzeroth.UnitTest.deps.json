@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.0",
-    "signature": "d836e5764b83206a1286106334f2cd402cd0f8a6"
+    "signature": "115f7b5b4751e95592fb553d2f20eeb15f809311"
   },
   "compilationOptions": {},
   "targets": {
@@ -13,7 +13,8 @@
           "MSTest.TestFramework": "1.2.0",
           "Microsoft.NET.Test.Sdk": "15.6.0",
           "NSubstitute": "3.1.0",
-          "xunit": "2.4.0"
+          "xunit": "2.4.0",
+          "xunit.runner.visualstudio": "2.4.0"
         },
         "runtime": {
           "BattleForAzeroth.UnitTest.dll": {}
@@ -1008,6 +1009,11 @@
           "lib/netstandard2.0/xunit.execution.dotnet.dll": {}
         }
       },
+      "xunit.runner.visualstudio/2.4.0": {
+        "dependencies": {
+          "Microsoft.NET.Test.Sdk": "15.6.0"
+        }
+      },
       "BattleForAzeroth.Game/1.0.0": {
         "dependencies": {
           "Newtonsoft.Json": "11.0.2"
@@ -1569,6 +1575,13 @@
       "sha512": "sha512-dVJIi7y7uSvFEInNIauX3QTtKkFoATb824NT3hHKKvjenhcV8qx1EracbFu2igLvyoVPpN04mYYGCRpAe35Usw==",
       "path": "xunit.extensibility.execution/2.4.0",
       "hashPath": "xunit.extensibility.execution.2.4.0.nupkg.sha512"
+    },
+    "xunit.runner.visualstudio/2.4.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-spS399J48cRVHJL4BRPT3FXBlINlJ6hh9f/8VfgkPRVjsqTU+CuDxvqsFzdj6++k+HxfFJP0ZPnbnLVNeH8zhQ==",
+      "path": "xunit.runner.visualstudio/2.4.0",
+      "hashPath": "xunit.runner.visualstudio.2.4.0.nupkg.sha512"
     },
     "BattleForAzeroth.Game/1.0.0": {
       "type": "project",

@@ -45,7 +45,6 @@ namespace BattleForAzeroth.Game.Controler
             {
                 Card libCard = lstCardLib.First(c => c.CardCode == cg.CardCode);
                 var card = Activator.CreateInstance(libCard.GetType()) as Card;
-                card.CardCode = libCard.CardCode;
                 card.CardInGameCode = cardInGameIndex.ToString();
                 card.IsFirstPlayerCard = true;
                 firstUser.AllCards.Add(card);
@@ -64,7 +63,6 @@ namespace BattleForAzeroth.Game.Controler
             {
                 Card libCard = lstCardLib.First(c => c.CardCode == detail.CardCode);
                 var card = Activator.CreateInstance(libCard.GetType()) as Card;
-                card.CardCode = libCard.CardCode;
                 card.CardInGameCode = cardInGameIndex.ToString();
                 card.IsFirstPlayerCard = false;
                 secondUser.AllCards.Add(card);
@@ -129,28 +127,31 @@ namespace BattleForAzeroth.Game.Controler
             }
 
             cardInGameIndex++;
-            firstHero.CardCode = lstCardLib.First(c => c.GetType().Name == firstHero.GetType().Name).CardCode;
+            firstHero.CardLocation = CardLocation.场上;
             firstHero.CardInGameCode = cardInGameIndex.ToString();
             firstHero.DeskIndex = 0;
             firstHero.IsFirstPlayerCard = true;
+            firstUser.AllCards.Add(firstHero);
 
             cardInGameIndex++;
-            secondHero.CardCode = lstCardLib.First(c => c.GetType().Name == secondHero.GetType().Name).CardCode;
+            secondHero.CardLocation = CardLocation.场上;
             secondHero.CardInGameCode = cardInGameIndex.ToString();
             secondHero.DeskIndex = 8;
             secondHero.IsFirstPlayerCard = false;
+            secondUser.AllCards.Add(secondHero);
 
             GameContext.DeskCards = new DeskBoard() { firstHero, null, null, null, null, null, null, null, secondHero, null, null, null, null, null, null, null };
             #endregion
 
-            Settlement();
+            GameContext.Settlement();
+            _gameCache.SetContext(GameContext);
         }
 
-        private void Settlement()
-        {
-            GameContext.AddEndOfPlayerActionEvent();
-            GameContext.EventQueueSettlement();
-            GameContext.QueueSettlement();
-        }
+        // private void Settlement()
+        // {
+        //     // GameContext.AddEndOfPlayerActionEvent();
+        //     GameContext.EventQueueSettlement();
+        //     GameContext.QueueSettlement();
+        // }
     }
 }

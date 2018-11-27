@@ -13,27 +13,32 @@ namespace BattleForAzeroth.Game.CardLibrary.Servant.Warrior
     public class WarsongCommander : BaseServant
     {
         public override string CardCode => "025";
-        public override int Damage { get; set; }  = 2;
-        public override int Life { get; set; }  = 3;
-        public override int Cost { get; set; }  = 3;
+        public override int Damage { get; set; } = 2;
+        public override int Life { get; set; } = 3;
+        public override int Cost { get; set; } = 3;
 
         public override int InitialDamage => 2;
         public override int InitialLife => 3;
         public override int InitialCost => 3;
 
 
-        public override int BuffLife { get; set; }  = 3;
+        public override int BuffLife { get; set; } = 3;
 
         public override string Describe => "每当你召唤一个攻击力小于或等于3的随从，使该随从获得冲锋";
 
         public override Rarity Rare => Rarity.史诗;
 
-        public override List<ICardAbility> Abilities => new List<ICardAbility>()
-        {
-            new CastMyServantDriver<
-                Assert<LessThan<ExtractCardDamage<PrimaryServantFilter,InDeskFilter>,Four>,Charge<PrimaryServantFilter>,Null>,
-                    InDeskFilter>()
-        };
+        public override ICardAbility CardAbility { get; internal set; } = 
+        new CastMyServantDriver
+        <
+            Assert
+            <
+                LessThan<ExtractCardDamage<PrimaryServantFilter, InDeskFilter>, Four>,
+                Charge<PrimaryServantFilter>, 
+                NullAbility
+            >,
+            InDeskFilter
+        >();
 
 
         public override string Name => "战歌指挥官";

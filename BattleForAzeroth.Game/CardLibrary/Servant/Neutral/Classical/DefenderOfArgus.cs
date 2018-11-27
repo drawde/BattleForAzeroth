@@ -14,26 +14,28 @@ namespace BattleForAzeroth.Game.CardLibrary.Servant.Neutral.Classical
     public class DefenderOfArgus : BaseServant
     {
         public override string CardCode => "008";
-        public override int Damage { get; set; }  = 2;
-        public override int Life { get; set; }  = 3;
-        public override int Cost { get; set; }  = 4;
+        public override int Damage { get; set; } = 2;
+        public override int Life { get; set; } = 3;
+        public override int Cost { get; set; } = 4;
 
         public override int InitialDamage => 2;
         public override int InitialLife => 3;
         public override int InitialCost => 4;
-        
-        public override int BuffLife { get; set; }  = 3;
+
+        public override int BuffLife { get; set; } = 3;
         public override string Describe => "战吼：使相邻的随从获得+1/+1和嘲讽。";
 
         public override Rarity Rare => Rarity.精良;
 
-        public override List<ICardAbility> Abilities => new List<ICardAbility>()
-        {
-            new NoneTargetBattlecryDriver<
-                DoubleAbility<
-                    Taunt<PrimaryCardBothSidesFilter>,
-                    AddDamageAndLife<PrimaryCardBothSidesFilter,ONE,ONE,Plus,InDeskFilter>>>()
-        };
+        public override ICardAbility CardAbility { get; internal set; } = 
+        new NoneTargetBattlecryDriver
+        <
+            DoubleAbility
+            <
+                Taunt<PrimaryCardBothSidesFilter>,
+                AddDamageAndLife<PrimaryCardBothSidesFilter, ONE, ONE, Plus, InDeskFilter>
+            >
+        >();
 
 
         public override string Name => "阿古斯防御者";

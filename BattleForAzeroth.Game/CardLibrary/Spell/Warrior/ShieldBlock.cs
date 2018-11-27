@@ -15,22 +15,19 @@ namespace BattleForAzeroth.Game.CardLibrary.Spell.Warrior
         public override Rarity Rare => Rarity.普通;
 
         public override string Name => "盾牌格挡";
-        public override int Cost { get; set; }  = 3;
+        public override int Cost { get; set; } = 3;
         public override int InitialCost => 3;
         public override string Describe => "获得5点护甲。抽1张牌。";
 
-        public override List<ICardAbility> Abilities => new List<ICardAbility>()
-        {
-            new NoneTargetSpellDriver
-                <
-                    DoubleActionDriver
-                    <
-                        AddAmmo<PrimaryUserContextFilter,Five>,
-                        DrawCard<PrimaryUserContextFilter,ONE>,
-                        NullFilter
-                    >>(),
-            //new CA_ShieldBlock()
-        };
+        public override ICardAbility CardAbility { get; internal set; } = new NoneTargetSpellDriver
+        <
+            DoubleActionDriver
+            <
+                AddAmmo<PrimaryUserContextFilter, Five>,
+                DrawCard<PrimaryUserContextFilter, ONE>,
+                NullFilter
+            >        
+        >();                
 
         public override string BackgroudImage => "WOW_MISC_021_D_1.png";
         public override Profession Profession => Profession.Warrior;

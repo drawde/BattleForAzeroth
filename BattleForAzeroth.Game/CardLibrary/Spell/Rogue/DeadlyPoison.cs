@@ -19,14 +19,11 @@ namespace BattleForAzeroth.Game.CardLibrary.Spell.Rogue
         public override Rarity Rare => Rarity.普通;
 
         public override string Name => "致命药膏";
-        public override int Cost { get; set; }  = 1;
+        public override int Cost { get; set; } = 1;
         public override int InitialCost => 1;
         public override string Describe => "使你的武器获得+2攻击力。";
 
-        public override List<ICardAbility> Abilities => new List<ICardAbility>()
-        {
-            new NoneTargetSpellDriver<UpgradeWeapon<PrimaryHeroFilter,Two,Zero>>()
-        };
+        public override ICardAbility CardAbility { get; internal set; } = new NoneTargetSpellDriver<UpgradeWeapon<PrimaryHeroFilter, Two, Zero>>();
 
         public override string BackgroudImage => "Classical/DeadlyPoison.jpg";
         public override Profession Profession => Profession.Rogue;

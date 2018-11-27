@@ -13,26 +13,23 @@ namespace BattleForAzeroth.Game.CardLibrary.Servant.Neutral.Classical
     public class JiaoXiaoDeZhongShi : BaseServant
     {
         public override string CardCode => "004";
-        public override int Damage { get; set; }  = 2;
-        public override int Life { get; set; }  = 1;
-        public override int Cost { get; set; }  = 1;
+        public override int Damage { get; set; } = 2;
+        public override int Life { get; set; } = 1;
+        public override int Cost { get; set; } = 1;
 
         public override int InitialDamage => 2;
         public override int InitialLife => 1;
         public override int InitialCost => 1;
-        
-        public override int BuffLife { get; set; }  = 1;
+
+        public override int BuffLife { get; set; } = 1;
 
         public override string Describe => "战吼：在本回合中，使一个随从获得 +2 攻击力。";
 
         public override Rarity Rare => Rarity.普通;
 
-        public override List<ICardAbility> Abilities => new List<ICardAbility>()
-        {
-            new AllServantBattlecryDriver<
-                ChangeDamage<SecondaryServantFilter,Two,Plus,InDeskFilter,
-                            RestoreDamage<PrimaryServantFilter,Two,Minus,InDeskFilter,TurnEndEvent>>>()
-        };
+        public override ICardAbility CardAbility { get; internal set; } = new AllServantBattlecryDriver<
+                ChangeDamage<SecondaryServantFilter, Two, Plus, InDeskFilter,
+                            RestoreDamage<PrimaryServantFilter, Two, Minus, InDeskFilter, TurnEndEvent>>>();
 
         public override string BackgroudImage => "W2_326_D.png";
 

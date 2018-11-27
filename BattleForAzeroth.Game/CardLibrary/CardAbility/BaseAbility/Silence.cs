@@ -22,7 +22,7 @@ namespace BattleForAzeroth.Game.CardLibrary.CardAbility.BaseAbility
 
         private void DisableCardAbility(BaseBiology bio, GameContext gameContext)
         {
-            bio.Abilities.Clear();
+            bio.CardAbility = null;
             if (bio.Buffs.Any())
             {
                 foreach (var ability in bio.Buffs)

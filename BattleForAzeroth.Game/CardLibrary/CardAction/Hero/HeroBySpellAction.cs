@@ -20,7 +20,7 @@ namespace BattleForAzeroth.Game.CardLibrary.CardAction.Hero
             int damage = para.DamageOrHeal;
 
             //计算法术强度类技能
-            var biologys = gameContext.DeskCards.GetDeskCardsByMyCard(baseHero);
+            var biologys = gameContext.DeskCards.GetDeskCardsByEnemyCard(baseHero).Where(c => c != null);
             damage += biologys.Sum(c => c.SpellPower);
             if (biologys.Any(c => c.CardType == CardType.英雄 && (c as BaseHero).Equip != null))
             {

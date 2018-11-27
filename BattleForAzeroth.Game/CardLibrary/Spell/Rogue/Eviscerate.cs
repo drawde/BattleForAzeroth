@@ -16,18 +16,15 @@ namespace BattleForAzeroth.Game.CardLibrary.Spell.Rogue
         public override Rarity Rare => Rarity.普通;
 
         public override string Name => "刺骨";
-        public override int Cost { get; set; }  = 2;
+        public override int Cost { get; set; } = 2;
         public override int InitialCost => 2;
         public override string Describe => "造成2点伤害。连击：造成4点伤害取而代之。";
 
-        public override List<ICardAbility> Abilities => new List<ICardAbility>()
-        {
-            new SpellDriver_Single_AllEnemy<
+        public override ICardAbility CardAbility { get; internal set; } = new SpellDriver_Single_AllEnemy<
                 ComboDriver<
-                    RiseDamage<SecondaryFilter,Two,ONE,SpellDamage>,
-                    RiseDamage<SecondaryFilter,Four,ONE,SpellDamage>,
-                NullFilter>>(),
-        };
+                    RiseDamage<SecondaryFilter, Two, ONE, SpellDamage>,
+                    RiseDamage<SecondaryFilter, Four, ONE, SpellDamage>,
+                NullFilter>>();
 
         public override string BackgroudImage => "Classical/Eviscerate.jpg";
         public override Profession Profession => Profession.Rogue;

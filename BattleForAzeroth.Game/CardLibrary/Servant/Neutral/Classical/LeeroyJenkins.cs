@@ -19,27 +19,25 @@ namespace BattleForAzeroth.Game.CardLibrary.Servant.Neutral.Classical
     public class LeeroyJenkins : BaseServant
     {
         public override string CardCode => "073";
-        public override int Damage { get; set; }  = 6;
-        public override int Life { get; set; }  = 2;
-        public override int Cost { get; set; }  = 5;
+        public override int Damage { get; set; } = 6;
+        public override int Life { get; set; } = 2;
+        public override int Cost { get; set; } = 5;
 
         public override int InitialDamage => 6;
         public override int InitialLife => 2;
         public override int InitialCost => 5;
 
 
-        public override int BuffLife { get; set; }  = 2;
+        public override int BuffLife { get; set; } = 2;
         public override string Describe => "冲锋，战吼：为你的对手召唤2只1/1的雏龙。";
 
         public override Rarity Rare => Rarity.传说;
 
-        public override List<ICardAbility> Abilities => new List<ICardAbility>()
-        {
+        public override ICardAbility CardAbility { get; internal set; } =
             new NoneTargetBattlecryDriver
             <
-                Summon<SecondaryUserContextFilter,NullFilter,AssignServantFilter<Whelp>,AllPickFilter,Two>
-            >()
-        };
+                Summon<SecondaryUserContextFilter, AssignServantFilter<Whelp>, Two>
+            >();
 
         public override bool HasCharge => true;
         public override string Name => "火车王里诺艾";

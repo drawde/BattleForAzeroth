@@ -10,7 +10,7 @@ namespace BattleForAzeroth.Game.CardLibrary.Hero
         public override string CardCode => "014";
         public override string Name => "法师";
         public override Profession Profession => Profession.Mage;
-        public override List<ICardAbility> Abilities => new List<ICardAbility>() { new MageAbility() };
+        public override ICardAbility CardAbility { get; internal set; } = new MageAbility();
         public override bool IsEnable => false;
     }
 }

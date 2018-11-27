@@ -29,7 +29,7 @@ namespace BattleForAzeroth.UnitTest
 {
     public class CardsUtil
     {
-        public List<Card> AllCard => new List<Card>
+        public static List<Card> AllCard => new List<Card>
             {
                 new Hunter(),
                 new Warlock(),
@@ -122,13 +122,7 @@ namespace BattleForAzeroth.UnitTest
                 new SludgeBelcher(),//淤泥喷射者
                 new Slime()//淤泥怪
             };
-
-        public CardsUtil()
-        {
-            AllCard.ForEach(c => c.CardCode = c.GetType().Name);
-        }
-
-        public List<Card> GetSharpswordOilCards()
+        public static List<Card> GetSharpswordOilCards()
         {
             return new List<Card>()
             {
@@ -166,7 +160,7 @@ namespace BattleForAzeroth.UnitTest
             };
         }
 
-        public List<Card> GetZooCards()
+        public static List<Card> GetZooCards()
         {
             return new List<Card>()
             {

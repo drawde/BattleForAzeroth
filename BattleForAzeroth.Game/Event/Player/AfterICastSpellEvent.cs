@@ -6,7 +6,7 @@ namespace BattleForAzeroth.Game.Event.Player
     {
         public Card EventCard { get; set; }
         public ActionParameter Parameter { get; set; }
-
+        public bool Compare(IEvent target) => target.GetType() == this.GetType();
         public void Settlement()
         {
             Respond(this);

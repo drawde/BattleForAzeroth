@@ -16,21 +16,18 @@ namespace BattleForAzeroth.Game.CardLibrary.Spell.Warrior
         public override Rarity Rare => Rarity.普通;
 
         public override string Name => "猛击";
-        public override int Cost { get; set; }  = 2;
+        public override int Cost { get; set; } = 2;
         public override int InitialCost => 2;
         public override string Describe => "对一个随从造成2点伤害，如果它依然存活，则抽一张牌。";
 
-        public override List<ICardAbility> Abilities => new List<ICardAbility>()
-        {
-            new SpellDriver_Single_AllServant<
+        public override ICardAbility CardAbility { get; internal set; } = new SpellDriver_Single_AllServant<
                 DoubleAbility<
-                    RiseDamage<SecondaryServantFilter,Two,ONE,PhysicalDamage>,
-                    Assert<SecondaryCardSurvival,DrawCard<PrimaryUserContextFilter,ONE>,Null>>>()
-        };
+                    RiseDamage<SecondaryServantFilter, Two, ONE, PhysicalDamage>,
+                    Assert<SecondaryCardSurvival, DrawCard<PrimaryUserContextFilter, ONE>, NullAbility>>>();
 
         public override string BackgroudImage => "W6_002_D.png";
         public override Profession Profession => Profession.Warrior;
 
-        public override int Damage { get; set; }  = 2;
+        public override int Damage { get; set; } = 2;
     }
 }

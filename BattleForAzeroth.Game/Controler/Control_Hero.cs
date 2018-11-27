@@ -7,6 +7,7 @@ using BattleForAzeroth.Game.Parameter;
 using BattleForAzeroth.Game.Action;
 using BattleForAzeroth.Game.CardLibrary.CardAction.Equip;
 using BattleForAzeroth.Game.Event.Player;
+using BattleForAzeroth.Game.Event.Combo;
 
 namespace BattleForAzeroth.Game.Controler
 {
@@ -28,11 +29,13 @@ namespace BattleForAzeroth.Game.Controler
             {
                 para.SecondaryCard = GameContext.DeskCards[target];
             }
-            hero.Abilities.First().Action(para);
+            hero.CardAbility.Action(para);
             UserContext user = GameContext.GetUserContextByMyCard(hero);
             user.RemainingHeroPowerCastCount -= 1;
             user.Power -= hero.HeroPowerCost < 0 ? 0 : hero.HeroPowerCost;
-            Settlement();
+            // GameContext.AddEndOfPlayerActionEvent();
+            GameContext.Settlement();
+            _gameCache.SetContext(GameContext);
         }
 
         /// <summary>
@@ -49,24 +52,30 @@ namespace BattleForAzeroth.Game.Controler
                 SecondaryCard = GameContext.DeskCards[target]
             };
             CardActionFactory.CreateAction(hero, ActionType.攻击).Action(para);
-            Settlement();
+            // GameContext.AddEndOfPlayerActionEvent();
+            GameContext.Settlement();
+            _gameCache.SetContext(GameContext);
         }
 
 
         public void LoadEquip(BaseHero hero, BaseEquip equip)
         {
             var user = GameContext.GetUserContextByMyCard(hero);
-            user.ComboSwitch = true;
+            // user.ComboSwitch = true;
             user.Power -= equip.Cost < 0 ? 0 : equip.Cost;
             var equipPara = new ActionParameter()
             {
                 GameContext = GameContext,
+                PrimaryCard = equip,
                 Equip = equip,
                 Hero = hero,
             };
-            new LoadAction().Action(equipPara);
+            new LoadAction().Action(equipPara);            
+            GameContext.AddActionStatement(new ComboOnAction(), equipPara);
             GameContext.EventQueue.AddLast(new PrimaryPlayerPlayCardEvent() { EventCard = equip, Parameter = equipPara });
-            Settlement();
+            // GameContext.AddEndOfPlayerActionEvent();
+            GameContext.Settlement();
+            _gameCache.SetContext(GameContext);
         }
     }
 }

@@ -13,24 +13,21 @@ namespace BattleForAzeroth.Game.CardLibrary.Servant.Warlock
     public class ImpGangBoss : BaseServant
     {
         public override string CardCode => "049";
-        public override int Damage { get; set; }  = 2;
-        public override int Life { get; set; }  = 4;
-        public override int Cost { get; set; }  = 3;
+        public override int Damage { get; set; } = 2;
+        public override int Life { get; set; } = 4;
+        public override int Cost { get; set; } = 3;
 
         public override int InitialDamage => 2;
         public override int InitialLife => 4;
         public override int InitialCost => 3;
-        
-        public override int BuffLife { get; set; }  = 4;
+
+        public override int BuffLife { get; set; } = 4;
 
         public override string Describe => "每当他受到伤害的时候，召唤一只1/1的小鬼。";
 
         public override Rarity Rare => Rarity.普通;
 
-        public override List<ICardAbility> Abilities => new List<ICardAbility>()
-        {
-            new HurtDriver<Summon<PrimaryUserContextFilter,NullFilter,AssignServantFilter<Imp>,AllPickFilter,ONE>,InDeskFilter>(),            
-        };
+        public override ICardAbility CardAbility { get; internal set; } = new HurtDriver<Summon<PrimaryUserContextFilter, AssignServantFilter<Imp>, ONE>, InDeskFilter>();
 
         public override string BackgroudImage => "BlackrockMountain/ImpGangBoss.jpg";
 

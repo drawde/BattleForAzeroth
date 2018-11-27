@@ -19,30 +19,30 @@ namespace BattleForAzeroth.Game.Controler.Proxy
         /// <param name="cardInGameCode"></param>
         /// <param name="location"></param>
         /// <returns></returns>
-        public string CastServant(string gameCode, string userCode, string cardInGameCode, int location, int target)
+        public APIResultBase CastServant(string gameCode, string userCode, string cardInGameCode, int location, int target)
         {
             string res = JsonStringResult.VerifyFail();
             Controler_Base ctl = Validate(gameCode, userCode);
             if (ctl == null)
             {
-                return JsonConvert.SerializeObject(JsonModelResult.PackageFail(OperateResCodeEnum.查询不到需要的数据));
+                return JsonModelResult.PackageFail(OperateResCodeEnum.查询不到需要的数据);
             }
             if (VictoryValidate(ctl.GameContext))
             {
-                return JsonConvert.SerializeObject(JsonModelResult.PackageFail(OperateResCodeEnum.游戏已经结束));
+                return JsonModelResult.PackageFail(OperateResCodeEnum.游戏已经结束);
             }
             var player = ctl.GameContext.GetActivationUserContext();
             if (player == null || player.UserCode != userCode)
             {
-                return JsonConvert.SerializeObject(JsonModelResult.PackageFail(OperateResCodeEnum.查询不到需要的数据));
+                return JsonModelResult.PackageFail(OperateResCodeEnum.查询不到需要的数据);
             }
             if (player.HandCards.Any(c => c.CardInGameCode == cardInGameCode) == false)
             {
-                return JsonConvert.SerializeObject(JsonModelResult.PackageFail(OperateResCodeEnum.查询不到需要的数据));
+                return JsonModelResult.PackageFail(OperateResCodeEnum.查询不到需要的数据);
             }
             if (location == 0 || location == 8)
             {
-                return JsonConvert.SerializeObject(JsonModelResult.PackageFail(OperateResCodeEnum.查询不到需要的数据));
+                return JsonModelResult.PackageFail(OperateResCodeEnum.查询不到需要的数据);
             }
             //if (ctl.GameContext.DeskCards[location] != null)
             //{
@@ -50,21 +50,21 @@ namespace BattleForAzeroth.Game.Controler.Proxy
             //}
             if (player.IsFirst && (location == 0 || location > 7))
             {
-                return JsonConvert.SerializeObject(JsonModelResult.PackageFail(OperateResCodeEnum.参数错误));
+                return JsonModelResult.PackageFail(OperateResCodeEnum.参数错误);
             }
             else if (player.IsFirst == false && (location == 8 || location < 8))
             {
-                return JsonConvert.SerializeObject(JsonModelResult.PackageFail(OperateResCodeEnum.参数错误));
+                return JsonModelResult.PackageFail(OperateResCodeEnum.参数错误);
             }
             Card card = player.HandCards.First(c => c.CardInGameCode == cardInGameCode);
 
             if (player.Power < card.Cost)
             {
-                return JsonConvert.SerializeObject(JsonModelResult.PackageFail(OperateResCodeEnum.没有足够的法力值));
+                return JsonModelResult.PackageFail(OperateResCodeEnum.没有足够的法力值);
             }
 
             ctl.CastServant((BaseServant)card, location, target);
-            return JsonConvert.SerializeObject(JsonModelResult.PackageSuccess(_gameCache.GetContext(ctl.GameContext.GameCode).Output()));
+            return JsonModelResult.PackageSuccess(_gameCache.GetContext(ctl.GameContext.GameCode).Output());
         }
 
 
@@ -76,42 +76,42 @@ namespace BattleForAzeroth.Game.Controler.Proxy
         /// <param name="cardInGameCode"></param>
         /// <param name="target"></param>
         /// <returns></returns>
-        public string ServantAttack(string gameCode, string userCode, string cardInGameCode, int target)
+        public APIResultBase ServantAttack(string gameCode, string userCode, string cardInGameCode, int target)
         {
             string res = JsonStringResult.VerifyFail();
             Controler_Base ctl = Validate(gameCode, userCode);
             if (ctl == null)
             {
-                return JsonConvert.SerializeObject(JsonModelResult.PackageFail(OperateResCodeEnum.查询不到需要的数据));
+                return JsonModelResult.PackageFail(OperateResCodeEnum.查询不到需要的数据);
             }
             if (VictoryValidate(ctl.GameContext))
             {
-                return JsonConvert.SerializeObject(JsonModelResult.PackageFail(OperateResCodeEnum.游戏已经结束));
+                return JsonModelResult.PackageFail(OperateResCodeEnum.游戏已经结束);
             }
             var player = ctl.GameContext.GetActivationUserContext();
             if (player == null || player.UserCode != userCode)
             {
-                return JsonConvert.SerializeObject(JsonModelResult.PackageFail(OperateResCodeEnum.查询不到需要的数据));
+                return JsonModelResult.PackageFail(OperateResCodeEnum.查询不到需要的数据);
             }
 
             if (ctl.GameContext.DeskCards.Any(c => c != null && c.CardInGameCode == cardInGameCode) == false)
             {
-                return JsonConvert.SerializeObject(JsonModelResult.PackageFail(OperateResCodeEnum.查询不到需要的数据));
+                return JsonModelResult.PackageFail(OperateResCodeEnum.查询不到需要的数据);
             }
 
             if (player.IsFirst && target < 8)
             {
-                return JsonConvert.SerializeObject(JsonModelResult.PackageFail(OperateResCodeEnum.参数错误));
+                return JsonModelResult.PackageFail(OperateResCodeEnum.参数错误);
             }
             else if (player.IsFirst == false && target > 7)
             {
-                return JsonConvert.SerializeObject(JsonModelResult.PackageFail(OperateResCodeEnum.参数错误));
+                return JsonModelResult.PackageFail(OperateResCodeEnum.参数错误);
             }
 
             BaseServant servant = ctl.GameContext.DeskCards.First(c => c != null && c.CardInGameCode == cardInGameCode) as BaseServant;
             if (servant.RemainAttackTimes < 1)
             {
-                return JsonConvert.SerializeObject(JsonModelResult.PackageFail(OperateResCodeEnum.查询不到需要的数据));
+                return JsonModelResult.PackageFail(OperateResCodeEnum.查询不到需要的数据);
             }
 
             if (ctl.GameContext.DeskCards[target].HasTaunt == false)
@@ -121,12 +121,12 @@ namespace BattleForAzeroth.Game.Controler.Proxy
                 {
                     if (taunts[i].HasTaunt && i != target)
                     {
-                        return JsonConvert.SerializeObject(JsonModelResult.PackageFail(OperateResCodeEnum.你必须先攻击有嘲讽技能的随从));
+                        return JsonModelResult.PackageFail(OperateResCodeEnum.你必须先攻击有嘲讽技能的随从);
                     }
                 }
             }
             ctl.ServantAttack(servant, target);
-            return JsonConvert.SerializeObject(JsonModelResult.PackageSuccess(_gameCache.GetContext(ctl.GameContext.GameCode).Output()));
+            return JsonModelResult.PackageSuccess(_gameCache.GetContext(ctl.GameContext.GameCode).Output());
         }
     }
 }

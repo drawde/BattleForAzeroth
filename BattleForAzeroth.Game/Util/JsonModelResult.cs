@@ -42,9 +42,9 @@ namespace BattleForAzeroth.Game.Util
             return jsonResult;
         }
 
-        public static APISingleModelResult<T> PackageSuccess<T>(T model)
+        public static GameResult<T> PackageSuccess<T>(T model)
         {
-            APISingleModelResult<T> textRes = new APISingleModelResult<T>();
+            GameResult<T> textRes = new GameResult<T>();
             textRes.code = OperateResCodeEnum.成功.GetHashCode();
             textRes.msg = OperateResCodeEnum.成功.ToString();
             textRes.data = model;

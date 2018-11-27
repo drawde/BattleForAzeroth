@@ -11,24 +11,21 @@ namespace BattleForAzeroth.Game.CardLibrary.Servant.Neutral.Classical
     public class BigGameHunter : BaseServant
     {
         public override string CardCode => "039";
-        public override int Damage { get; set; }  = 4;
-        public override int Life { get; set; }  = 2;
-        public override int Cost { get; set; }  = 3;
+        public override int Damage { get; set; } = 4;
+        public override int Life { get; set; } = 2;
+        public override int Cost { get; set; } = 3;
 
         public override int InitialDamage => 4;
         public override int InitialLife => 2;
         public override int InitialCost => 3;
-        
-        public override int BuffLife { get; set; }  = 2;
+
+        public override int BuffLife { get; set; } = 2;
 
         public override string Describe => "战吼：消灭一个攻击力大于或等于7的随从。";
 
         public override Rarity Rare => Rarity.史诗;
 
-        public override List<ICardAbility> Abilities => new List<ICardAbility>()
-        {
-            new AllEnemyServantBattlecryDriver<Death<SecondaryServantFilter>>(),
-        };
+        public override ICardAbility CardAbility { get; internal set; } = new AllEnemyServantBattlecryDriver<Death<SecondaryServantFilter>>();
 
         public override string BackgroudImage => "W5_030_D.png";
 

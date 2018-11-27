@@ -20,25 +20,22 @@ namespace BattleForAzeroth.Game.CardLibrary.Spell.Warlock
         public override Rarity Rare => Rarity.普通;
 
         public override string Name => "小鬼爆破";
-        public override int Cost { get; set; }  = 4;
+        public override int Cost { get; set; } = 4;
         public override int InitialCost => 4;
         public override string Describe => "对一个随从造成2-4点伤害，每造成1点伤害，召唤一个1/1的小鬼。";
 
-        public override List<ICardAbility> Abilities => new List<ICardAbility>()
-        {
-            new SpellDriver_Single_AllEnemyServant<
+        public override ICardAbility CardAbility { get; internal set; } = new SpellDriver_Single_AllEnemyServant<
                 NumberContainer<
                     DoubleAbility<
-                        RiseDamage<SecondaryServantFilter,ContainerNumber,ONE,SpellDamage>,
-                        Summon<PrimaryUserContextFilter,NullFilter,AssignServantFilter<Imp>,AllPickFilter,ContainerNumber>
+                        RiseDamage<SecondaryServantFilter, ContainerNumber, ONE, SpellDamage>,
+                        Summon<PrimaryUserContextFilter, AssignServantFilter<Imp>, ContainerNumber>
                         >,
-                    RandomNumber<Two,Four>
-                >>()
-        };
+                    RandomNumber<Two, Four>
+                >>();
 
         public override string BackgroudImage => "GVG/Implosion.jpg";
         public override Profession Profession => Profession.Warlock;
 
-        public override int Damage { get; set; }  = 4;
+        public override int Damage { get; set; } = 4;
     }
 }

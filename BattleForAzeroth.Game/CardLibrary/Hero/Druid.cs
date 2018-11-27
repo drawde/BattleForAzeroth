@@ -9,7 +9,7 @@ namespace BattleForAzeroth.Game.CardLibrary.Hero
     {
         public override string Name => "德鲁伊";
         public override Profession Profession => Profession.Druid;
-        public override List<ICardAbility> Abilities => new List<ICardAbility>() { new DruidAbility() };
+        public override ICardAbility CardAbility { get; internal set; } = new DruidAbility();
         public override bool IsEnable => false;
     }
 }

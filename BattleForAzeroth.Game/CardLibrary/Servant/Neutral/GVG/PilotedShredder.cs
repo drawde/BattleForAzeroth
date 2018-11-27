@@ -13,23 +13,21 @@ namespace BattleForAzeroth.Game.CardLibrary.Servant.Neutral.GVG
     public class PilotedShredder : BaseServant
     {
         public override string CardCode => "052";
-        public override int Damage { get; set; }  = 4;
-        public override int Life { get; set; }  = 3;
-        public override int Cost { get; set; }  = 4;
+        public override int Damage { get; set; } = 4;
+        public override int Life { get; set; } = 3;
+        public override int Cost { get; set; } = 4;
 
         public override int InitialDamage => 4;
         public override int InitialLife => 3;
         public override int InitialCost => 4;
-        
-        public override int BuffLife { get; set; }  = 3;
+
+        public override int BuffLife { get; set; } = 3;
 
         public override string Describe => "亡语：增加召唤一个法力值消耗为（2）点的随从。";
 
         public override Rarity Rare => Rarity.精良;
 
-        public override List<ICardAbility> Abilities => new List<ICardAbility>() {
-            new DeathWhisperDriver<Summon<PrimaryUserContextFilter,NullFilter,RandomServantOfCostFilter<Two>,AllPickFilter,ONE>, InDeskFilter>()
-        };
+        public override ICardAbility CardAbility { get; internal set; } = new DeathWhisperDriver<Summon<PrimaryUserContextFilter, RandomServantOfCostFilter<Two>, ONE>, InDeskFilter>();
 
         public override string BackgroudImage => "GVG/PilotedShredder.jpg";
 

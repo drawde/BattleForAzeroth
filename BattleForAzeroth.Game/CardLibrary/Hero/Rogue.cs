@@ -9,6 +9,6 @@ namespace BattleForAzeroth.Game.CardLibrary.Hero
         public override string CardCode => "017";
         public override string Name => "盗贼";
         public override Profession Profession => Profession.Rogue;
-        public override List<ICardAbility> Abilities => new List<ICardAbility>() { new RogueAbility() };
+        public override ICardAbility CardAbility { get; internal set; } = new RogueAbility();
     }
 }
